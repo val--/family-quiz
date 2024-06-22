@@ -1,7 +1,7 @@
 export interface Question {
-    questionText: string;
-    options: string[];
-    correctAnswer: string;
+    question: string;
+    propositions: string[];
+    réponse: string;
   }
   
   export interface Quiz {

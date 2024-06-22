@@ -27,7 +27,7 @@ const Quiz: React.FC<QuizProps> = ({ title, questions }) => {
 
   return (
     <div className="quiz-container p-4 bg-grey rounded-lg shadow-lg">
-      <h1 className="text-2xl font-bold mb-4">{title}</h1>
+      <h1 className="text-2xl text-white font-bold mb-4">{title}</h1>
       {!showResult ? (
         <Question
           question={questions[currentQuestionIndex]}
