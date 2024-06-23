@@ -7,7 +7,7 @@ interface ResultProps {
 
 const Result: React.FC<ResultProps> = ({ score, total }) => {
   return (
-    <div className="text-white">
+    <div>
       <h2 className="text-xl font-bold">Fini !</h2>
       <p className="mt-2">
         Votre score: {score} / {total}

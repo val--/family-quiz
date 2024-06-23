@@ -10,8 +10,8 @@ export default function Home() {
     return array.sort(() => Math.random() - 0.5); 
 };
   return (
-    <div className="home-container flex items-center justify-center min-h-screen bg-black">
-      <Quiz title={quiz.thème} questions={shuffle(quiz.quizz.débutant) } />
+    <div className="home-container flex items-center justify-center min-h-screen">
+      <Quiz title={quiz.thème} questions={shuffle(quiz.quizz.débutant.concat(quiz.quizz.confirmé.concat(quiz.quizz.expert))) } />
     </div>
   );
 }

@@ -24,7 +24,7 @@ const Question: React.FC<QuestionProps> = ({ question, handleAnswer }) => {
 
   return (
     <div>
-      <h2 className="text-xl text-white font-semibold mb-4">{question.question}</h2>
+      <h2 className="text-xl font-semibold mb-4">{question.question}</h2>
       <div className="options grid grid-cols-1 gap-2">
         {question.propositions.map((option, index) => (
           <button
