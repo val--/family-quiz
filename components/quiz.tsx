@@ -27,12 +27,18 @@ const Quiz: React.FC<QuizProps> = ({ title, questions }) => {
 
   return (
     <div className="quiz-container p-4 bg-grey rounded-lg shadow-lg">
-      <h1 className="text-2xl text-white font-bold mb-4">{title}</h1>
+      <h1 className="text-3xl text-white font-bold mb-4">Quiz "{title}"</h1>
       {!showResult ? (
+        <div>
+        <div className="mb-6">
+          <p className="text-white">Votre score: {score} point(s)</p>
+          <p className="text-white">Question {currentQuestionIndex} / {questions.length}</p>
+        </div>
         <Question
           question={questions[currentQuestionIndex]}
           handleAnswer={handleAnswer}
         />
+        </div>
       ) : (
         <Result score={score} total={questions.length} />
       )}

@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Question as QuestionType } from '../app/types';
 
 interface QuestionProps {
@@ -7,8 +7,19 @@ interface QuestionProps {
 }
 
 const Question: React.FC<QuestionProps> = ({ question, handleAnswer }) => {
+  const [activeOption, setActiveOption] = useState<string | null>(null);
+  const [isCorrect, setIsCorrect] = useState<boolean | null>(null);
+
   const handleOptionClick = (option: string) => {
-    handleAnswer(option === question.réponse);
+    const correct = option === question.réponse;
+    setActiveOption(option);
+    setIsCorrect(correct);
+    
+    setTimeout(() => {
+      handleAnswer(correct);
+      setActiveOption(null); // Reset active option after handling the answer
+      setIsCorrect(null); // Reset correctness state after handling the answer
+    }, 500);
   };
 
   return (
@@ -18,8 +29,15 @@ const Question: React.FC<QuestionProps> = ({ question, handleAnswer }) => {
         {question.propositions.map((option, index) => (
           <button
             key={index}
-            className="option bg-blue-500 text-white p-2 rounded"
+            className={`option p-2 rounded ${
+              option === activeOption
+                ? isCorrect
+                  ? 'bg-green-500'
+                  : 'bg-red-500'
+                : 'bg-blue-500'
+            } text-white`}
             onClick={() => handleOptionClick(option)}
+            disabled={!!activeOption} // Disable all buttons if an option is selected
           >
             {option}
           </button>
