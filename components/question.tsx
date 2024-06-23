@@ -19,12 +19,13 @@ const Question: React.FC<QuestionProps> = ({ question, handleAnswer }) => {
       handleAnswer(correct);
       setActiveOption(null); // Reset active option after handling the answer
       setIsCorrect(null); // Reset correctness state after handling the answer
-    }, 500);
+    }, 6000);
   };
 
   return (
     <div>
-      <h2 className="text-xl font-semibold mb-4">{question.question}</h2>
+      
+      <h3 className="text-xl font-semibold mb-4">{!!activeOption ? ( <h3> {isCorrect ? ("Bravo ! 🥳") : "Raté ! 👎"} { question.anecdote} </h3>) : question.question}</h3>
       <div className="options grid grid-cols-1 gap-2">
         {question.propositions.map((option, index) => (
           <button
