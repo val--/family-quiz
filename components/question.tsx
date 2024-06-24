@@ -19,18 +19,19 @@ const Question: React.FC<QuestionProps> = ({ question, handleAnswer }) => {
       handleAnswer(correct);
       setActiveOption(null); // Reset active option after handling the answer
       setIsCorrect(null); // Reset correctness state after handling the answer
-    }, 6000);
+    }, 5000);
   };
 
   return (
     <div>
       
-      <h3 className="text-xl font-semibold mb-4">{!!activeOption ? ( <h3> {isCorrect ? ("Bravo ! 🥳") : "Raté ! 👎"} { question.anecdote} </h3>) : question.question}</h3>
+      <h3 className="text-m font-semibold mb-2">{!!activeOption ? ( <span> {isCorrect ? ("Bravo !") : "Raté ! La bonne réponse était \"" + question.réponse+"\"."}</span>) : question.question}</h3>
+      <div className="text-xs mb-2">{!!activeOption ? ( question.anecdote) : <div>&nbsp;</div>}</div>
       <div className="options grid grid-cols-1 gap-2">
         {question.propositions.map((option, index) => (
           <button
             key={index}
-            className={`option p-2 rounded ${
+            className={`option p-2 rounded transition ease-out delay-50 bg-blue-500 duration-30 ${
               option === activeOption
                 ? isCorrect
                   ? 'bg-green-500'

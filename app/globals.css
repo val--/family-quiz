@@ -34,10 +34,6 @@ body {
   background-color: lightgrey;
 }
 
-.option:disabled {
-  opacity: 0.8;
-}
-
 @layer utilities {
   .text-balance {
     text-wrap: balance;

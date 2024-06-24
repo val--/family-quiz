@@ -1,17 +1,15 @@
-import data from './sample.json';
-import data2 from './sample2.json';
+import data from './sample3.json';
 
 import Quiz from '../components/quiz';
 import { Question } from './types';
 
 export default function Home() {
-  const quiz = (Math.random()>=0.5)? data : data2
   const shuffle = (array: Question[]) => { 
     return array.sort(() => Math.random() - 0.5); 
 };
   return (
-    <div className="home-container flex items-center justify-center min-h-screen">
-      <Quiz title={quiz.thème} questions={shuffle(quiz.quizz.débutant.concat(quiz.quizz.confirmé.concat(quiz.quizz.expert))) } />
+    <div className="home-container flex items-center justify-center min-h-screen min-w-screen">
+      <Quiz title={data.thème} questions={shuffle(data.quizz.fr.débutant.concat(data.quizz.fr.confirmé.concat(data.quizz.fr.expert))) } />
     </div>
   );
 }
