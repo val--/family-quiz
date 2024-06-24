@@ -9,6 +9,20 @@ export default function Home() {
 };
   return (
     <div className="home-container flex items-center justify-center min-h-screen min-w-screen">
+		<div className="area">
+			<ul className="circles">
+				<li></li>
+				<li></li>
+				<li></li>
+				<li></li>
+				<li></li>
+				<li></li>
+				<li></li>
+				<li></li>
+				<li></li>
+				<li></li>
+			</ul>
+		</div>
       <Quiz title={data.thème} questions={shuffle(data.quizz.fr.débutant.concat(data.quizz.fr.confirmé.concat(data.quizz.fr.expert))) } />
     </div>
   );
