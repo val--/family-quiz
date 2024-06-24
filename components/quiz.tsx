@@ -36,7 +36,7 @@ const Quiz: React.FC<QuizProps> = ({ title, questions }) => {
           />
           <div className="flex flex-row mt-4">
             <div className="basis-1/2"><p>Votre score: <strong>{score} point(s)</strong></p></div>
-            <div className="basis-1/2"><p>Question {currentQuestionIndex} / {questions.length}</p></div>
+            <div className="basis-1/2"><p>Question {currentQuestionIndex+1} / {questions.length}</p></div>
           </div>
         </div>
       ) : (
