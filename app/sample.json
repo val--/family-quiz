@@ -1,7 +1,7 @@
 {
     "provider":"OpenQuizzDB - Fournisseur de contenu libre (https://www.openquizzdb.org)",
     "author":"Philippe Bresoux",
-    "theme":"Orthoquizz (Des mots souvent difficiles à écrire)",
+    "theme":"Orthoquizz (Des mots difficiles à écrire)",
     "difficulty":"3 / 5",
     "quizz":[
        {
