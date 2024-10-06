@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 
-import { QuestionType } from '../types/custom-types';
+import { QuestionType } from '../../types/custom-types';
 
 interface QuestionProps {
   question: QuestionType;

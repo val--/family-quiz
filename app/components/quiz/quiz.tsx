@@ -4,7 +4,7 @@ import React, { useState } from 'react';
 import Question from './question';
 import Result from './result';
 
-import { QuestionType } from '../types/custom-types';
+import { QuestionType } from '../../types/custom-types';
 
 interface QuizProps {
   title: string;
