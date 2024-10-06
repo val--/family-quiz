@@ -63,18 +63,18 @@ export default function Home() {
   };
 
   return (
-    <div className="min-h-screen flex flex-col items-center justify-center bg-gradient-to-r from-blue-400 via-purple-500 to-pink-500">
+    <div className="min-h-screen flex flex-col items-center justify-center bg-gradient-to-r from-blue-400 via-purple-500 to-pink-500 p-2">
       <div className="text-center">
         <h1 className="text-white text-5xl font-bold mb-8">Bienvenue sur Family Quiz</h1>
         <p className="text-white text-lg mb-6">Choisis un membre de la famille pour commencer un quiz !</p>
 
-        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-6 place-items-center">
+        <div className="grid grid-cols-2 sm:grid-cols-2 md:grid-cols-4 gap-6 place-items-center">
           {members.map((member) => (
             <Link
               key={member.id}
               href={`/quiz/`}
               onClick={() => handleStartQuiz(member)}
-              className="relative flex flex-col items-center justify-center text-purple-700 hover:text-white transition-all duration-300 font-semibold w-48 h-48 rounded-full hover:bg-purple-700 hover:scale-105"
+              className="relative flex flex-col items-center justify-center text-purple-900 hover:text-white transition-all duration-300 font-semibold w-48 h-48 rounded-full hover:scale-110"
             >
               <img
                 src={member.photo}

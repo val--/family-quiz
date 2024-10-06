@@ -37,10 +37,12 @@ const Quiz: React.FC<QuizProps> = ({ title, questions }) => {
         setNextQuestionIndex(null); // Reset the nextQuestionIndex
       }, 5000);
     } else {
-      setShowResult(true);
-      if (currentUser) {
-        localStorage.setItem(`score_${currentUser.id}`, (score + (isCorrect ? 1 : 0)).toString());
-      }
+      setTimeout(() => {
+        setShowResult(true);
+        if (currentUser) {
+          localStorage.setItem(`score_${currentUser.id}`, (score + (isCorrect ? 1 : 0)).toString());
+        }
+      }, 5000);
     }
   };
 
