@@ -5,4 +5,15 @@
 You can open this project with Visual Studio Code & hit "re-open with Dev Container".  
 Once in the terminal, run `npm run dev` and you should be good to go.  
 
+---
+
+TODO:
+- Accounts
+- Persistence (sessions, scores...)
+- Manage quiz data (themes, difficulty...)
+- Amazing animations
+- ...
+
+---
+
 Note: as a quiz smaple, i used data from https://www.openquizzdb.org/
