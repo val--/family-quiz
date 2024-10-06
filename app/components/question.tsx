@@ -23,11 +23,19 @@ const Question: React.FC<QuestionProps> = ({ question, handleAnswer }) => {
     }, 5000);
   };
 
+  // Random emoji for success or failure
+  const emojis = ["🎉", "👏", "💪", "✨"];
+  const failureEmojis = ["😔", "😢", "💔", "🙁"];
+  const successEmoji = emojis[Math.floor(Math.random() * emojis.length)];
+  const failureEmoji = failureEmojis[Math.floor(Math.random() * failureEmojis.length)];
+
   return (
     <div>
       <h3 className="text-lg font-semibold mb-2 text-gray-900">
         {!!activeOption ? (
-          <span>{isCorrect ? "Bravo !" : `Raté ! La bonne réponse était "${question.answer}".`}</span>
+          <span>
+            {isCorrect ? `${successEmoji} Bravo !` : `${failureEmoji} Raté ! La bonne réponse était "${question.answer}".`}
+          </span>
         ) : (
           question.question
         )}
@@ -37,23 +45,30 @@ const Question: React.FC<QuestionProps> = ({ question, handleAnswer }) => {
       </p>
       <div className="grid grid-cols-1 gap-3">
         {question.answers.map((option, index) => (
-          <button
-            key={index}
-            className={`p-3 rounded-lg text-white font-medium transition-all duration-300 ${
-              option === activeOption
-                ? isCorrect
-                  ? 'bg-green-500'
-                  : 'bg-red-500 animate-shake'
-                : 'bg-purple-600 hover:bg-purple-700'
-            }`}
-            onClick={() => handleOptionClick(option)}
-            disabled={!!activeOption}
-          >
-            {option}
-          </button>
+          <div key={index} className="relative">
+            <button
+              className={`w-full p-3 rounded-lg text-white font-medium text-center transition-all duration-300 relative overflow-hidden ${
+                option === activeOption
+                  ? isCorrect
+                    ? 'bg-green-500'
+                    : 'bg-red-500 animate-shake'
+                  : 'bg-purple-600 hover:bg-purple-700'
+              }`}
+              onClick={() => handleOptionClick(option)}
+              disabled={!!activeOption}
+            >
+              {option}
+              {/* Progress Bar */}
+              {option === activeOption && (
+                <div className="absolute inset-0">
+                  <div className="progress-bar absolute bottom-0 left-0 h-1 bg-white animate-progress"></div>
+                </div>
+              )}
+            </button>
+          </div>
         ))}
       </div>
-      {/* Shake animation for wrong answers */}
+      {/* Shake animation for wrong answers and progress bar animation */}
       <style jsx>{`
         @keyframes shake {
           0%, 100% {
@@ -73,6 +88,20 @@ const Question: React.FC<QuestionProps> = ({ question, handleAnswer }) => {
         .animate-shake {
           animation: shake 0.5s ease;
         }
+
+        @keyframes progress {
+          0% {
+            width: 0%;
+          }
+          100% {
+            width: 100%;
+          }
+        }
+
+        .animate-progress {
+          animation: progress 5s linear forwards;
+        }
+
       `}</style>
     </div>
   );
