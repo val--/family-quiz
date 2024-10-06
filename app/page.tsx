@@ -43,30 +43,41 @@ const getLastScores = () => {
     const lastScore = localStorage.getItem(`score_${member.id}`);
     return {
       ...member,
-      lastScore: lastScore ? parseInt(lastScore, 10) : 0,
+      lastScore: lastScore ? parseInt(lastScore, 10) : null, // Set null instead of 0 if no score
     };
   });
 };
 
 export default function Home() {
-  const [members, setMembers] = useState(familyMembers);
+  const [members, setMembers] = useState<FamilyMember[]>([]);
+  const [highestScorerId, setHighestScorerId] = useState<string | null>(null);
+  const [loading, setLoading] = useState(true);
 
-  // Load last scores from localStorage
   useEffect(() => {
     const membersWithScores = getLastScores();
     setMembers(membersWithScores);
+
+    const highestScorer = membersWithScores.reduce((max, member) => {
+      return member.lastScore && member.lastScore > (max.lastScore || 0) ? member : max;
+    }, membersWithScores[0]);
+
+    setHighestScorerId(highestScorer.id);
+    setLoading(false);
   }, []);
 
-  // Save the selected user in localStorage and navigate to the quiz page
-  const handleStartQuiz = (member) => {
-    localStorage.setItem("currentUser", JSON.stringify(member)); // Store the user info
+  const handleStartQuiz = (member: FamilyMember) => {   // = save the selected user in localStorage and navigate to the quiz page
+    localStorage.setItem("currentUser", JSON.stringify(member));
   };
+
+  if (loading) {
+    return <div className="text-white text-2xl">Chargement...</div>;
+  }
 
   return (
     <div className="min-h-screen flex flex-col items-center justify-center bg-gradient-to-r from-blue-400 via-purple-500 to-pink-500 p-2">
       <div className="text-center">
-        <h1 className="text-white text-5xl font-bold mb-8">Bienvenue sur Family Quiz</h1>
-        <p className="text-white text-lg mb-6">Choisis un membre de la famille pour commencer un quiz !</p>
+        <h1 className="text-white text-5xl font-bold mb-8">Bienvenue sur le Guiberre Quiz <span>🐱</span></h1>
+        <p className="text-white text-xl mb-6">Choisis un membre de la famille pour commencer le quiz ! Qui es-tu ?</p>
 
         <div className="grid grid-cols-2 sm:grid-cols-2 md:grid-cols-4 gap-6 place-items-center">
           {members.map((member) => (
@@ -74,15 +85,20 @@ export default function Home() {
               key={member.id}
               href={`/quiz/`}
               onClick={() => handleStartQuiz(member)}
-              className="relative flex flex-col items-center justify-center text-purple-900 hover:text-white transition-all duration-300 font-semibold w-48 h-48 rounded-full hover:scale-110"
+              className="relative flex flex-col items-center justify-center text-purple-900 hover:text-white transition-all duration-300 font-semibold w-48 h-48 hover:scale-110"
             >
               <img
                 src={member.photo}
                 alt={`Photo de ${member.name}`}
                 className="w-28 h-28 rounded-full mb-2 object-cover"
               />
-              <span className="z-10 text-xl">{member.name}</span>
-              <p className="text-white mt-2">{member.lastScore ? `Dernier score: ${member.lastScore}` : "Pas de score"}</p>
+              <span className="z-10 text-xl">
+                {member.name}
+                {highestScorerId === member.id && <span> 👑</span>}
+              </span>
+              <p className="text-white mt-2">
+                {member.lastScore !== null ? `Dernier score: ${member.lastScore}` : "Pas de score"}
+              </p>
               <div className="absolute inset-0 bg-white opacity-0 rounded-full hover:opacity-10 transition-opacity duration-300"></div>
             </Link>
           ))}

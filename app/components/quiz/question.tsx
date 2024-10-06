@@ -24,9 +24,8 @@ const Question: React.FC<QuestionProps> = ({ question, handleAnswer }) => {
     }, 5000);
   };
 
-  // Random emoji for success or failure
-  const emojis = ["🎉", "👏", "💪", "✨"];
-  const failureEmojis = ["😔", "😢", "💔", "🙁"];
+  const emojis = ["🎉", "👏", "💪", "✨", "😎", "😀"];
+  const failureEmojis = ["😔", "😢", "💔", "🙁", "💩", "😤"];
   const successEmoji = emojis[Math.floor(Math.random() * emojis.length)];
   const failureEmoji = failureEmojis[Math.floor(Math.random() * failureEmojis.length)];
 
