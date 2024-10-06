@@ -16,10 +16,11 @@ const Question: React.FC<QuestionProps> = ({ question, handleAnswer }) => {
     setActiveOption(option);
     setIsCorrect(correct);
 
+    handleAnswer(correct);
+
     setTimeout(() => {
-      handleAnswer(correct);
-      setActiveOption(null); // Reset active option after handling the answer
-      setIsCorrect(null); // Reset correctness state after handling the answer
+      setActiveOption(null);
+      setIsCorrect(null);
     }, 5000);
   };
 
