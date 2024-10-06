@@ -14,15 +14,15 @@ interface FamilyMember {
 const familyMembers: FamilyMember[] = [
   {
     id: "1",
-    name: "Abby",
+    name: "Ybba",
     email: "user@mail.com",
-    photo: "/images/abby.png",
+    photo: "/images/cardi.png",
   },
   {
     id: "2",
     name: "Adèle",
     email: "user@mail.com",
-    photo: "/images/adele.png",
+    photo: "/images/adele2.png",
   },
   {
     id: "3",
