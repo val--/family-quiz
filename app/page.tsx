@@ -11,7 +11,14 @@ interface FamilyMember {
   lastScore?: number;
 }
 
-const familyMembers: FamilyMember[] = [
+const familyMembers: FamilyMember[] = process.env.NODE_ENV === "production" ? [
+  {
+    id: "guest",
+    name: "Invité",
+    email: "guest@mail.com",
+    photo: "/images/default-avatar.png",
+  }
+] : [
   {
     id: "1",
     name: "Ybba",
@@ -37,6 +44,14 @@ const familyMembers: FamilyMember[] = [
     photo: "/images/valentin.png",
   },
 ];
+
+// Guest family member to show in production
+const guestMember: FamilyMember = {
+  id: "guest",
+  name: "Guest",
+  email: "guest@mail.com",
+  photo: "/images/default-avatar.png",
+};
 
 const getLastScores = () => {
   return familyMembers.map((member) => {
