@@ -68,6 +68,7 @@ const Question: React.FC<QuestionProps> = ({ question, handleAnswer }) => {
           </div>
         ))}
       </div>
+      
       {/* Shake animation for wrong answers and progress bar animation */}
       <style jsx>{`
         @keyframes shake {

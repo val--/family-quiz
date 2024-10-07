@@ -19,7 +19,6 @@ const Quiz: React.FC<QuizProps> = ({ title, questions }) => {
   const [showResult, setShowResult] = useState(false);
   const [currentUser, setCurrentUser] = useState(null);
 
-  // Function to shuffle the questions
   const shuffleArray = (array: QuestionType[]) => {
     for (let i = array.length - 1; i > 0; i--) {
       const j = Math.floor(Math.random() * (i + 1));
@@ -29,7 +28,6 @@ const Quiz: React.FC<QuizProps> = ({ title, questions }) => {
   };
 
   useEffect(() => {
-    // Shuffle the questions on load
     setShuffledQuestions(shuffleArray([...questions]));
     const user = JSON.parse(localStorage.getItem("currentUser"));
     setCurrentUser(user);
