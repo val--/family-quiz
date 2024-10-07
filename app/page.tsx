@@ -16,7 +16,7 @@ const familyMembers: FamilyMember[] = process.env.NODE_ENV === "production" ? [
     id: "guest",
     name: "Invité",
     email: "guest@mail.com",
-    photo: "/images/default-avatar.png",
+    photo: "/images/guest.png",
   }
 ] : [
   {
@@ -44,14 +44,6 @@ const familyMembers: FamilyMember[] = process.env.NODE_ENV === "production" ? [
     photo: "/images/valentin.png",
   },
 ];
-
-// Guest family member to show in production
-const guestMember: FamilyMember = {
-  id: "guest",
-  name: "Guest",
-  email: "guest@mail.com",
-  photo: "/images/default-avatar.png",
-};
 
 const getLastScores = () => {
   return familyMembers.map((member) => {
@@ -97,7 +89,6 @@ export default function Home() {
         <p className="text-white text-xl mb-6">
           Choisis un membre de la famille pour commencer le quiz ! Qui es-tu ?
         </p>
-        <span>Debug: {process.env.NODE_ENV}</span>
 
         <div className="grid grid-cols-2 sm:grid-cols-2 md:grid-cols-4 gap-6 place-items-center">
           {members.map((member) => (
@@ -117,7 +108,7 @@ export default function Home() {
               />
               <span className="z-10 text-xl">
                 {member.name}
-                {highestScorerId === member.id && <span> 👑</span>}
+                {(highestScorerId === member.id && member.lastScore !== null) && <span> 👑</span>}
               </span>
               <p className="text-white mt-2">
                 {member.lastScore !== null ? `Dernier score: ${member.lastScore}` : "Pas de score"}
