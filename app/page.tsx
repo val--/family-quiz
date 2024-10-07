@@ -90,13 +90,13 @@ export default function Home() {
           Choisis un membre de la famille pour commencer le quiz ! Qui es-tu ?
         </p>
 
-        <div className="grid grid-cols-2 sm:grid-cols-2 md:grid-cols-4 gap-6 place-items-center">
+        <div className={`grid grid-cols-2 sm:grid-cols-2 gap-6 place-items-center ${members.length === 1 ? 'md:grid-cols-1' : members.length === 2 ? 'md:grid-cols-2' : 'md:grid-cols-4'}`}>
           {members.map((member) => (
             <Link
               key={member.id}
               href={`/quiz/`}
               onClick={() => handleStartQuiz(member)}
-              className="relative flex flex-col items-center justify-center text-purple-900 hover:text-white transition-all duration-300 font-semibold w-48 h-48 hover:scale-110"
+              className="relative flex flex-col items-center justify-center text-purple-900 transition-all duration-300 font-semibold w-48 h-48 hover:scale-110"
             >
               <img
                 src={member.photo}
@@ -113,7 +113,7 @@ export default function Home() {
               <p className="text-white mt-2">
                 {member.lastScore !== null ? `Dernier score: ${member.lastScore}` : "Pas de score"}
               </p>
-              <div className="absolute inset-0 bg-white opacity-0 rounded-full hover:opacity-10 transition-opacity duration-300"></div>
+              <div className="absolute inset-0 opacity-0 rounded-full hover:opacity-10 transition-opacity duration-300"></div>
             </Link>
           ))}
         </div>
