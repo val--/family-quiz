@@ -97,6 +97,7 @@ export default function Home() {
         <p className="text-white text-xl mb-6">
           Choisis un membre de la famille pour commencer le quiz ! Qui es-tu ?
         </p>
+        <span>Debug: {process.env.NODE_ENV}</span>
 
         <div className="grid grid-cols-2 sm:grid-cols-2 md:grid-cols-4 gap-6 place-items-center">
           {members.map((member) => (
