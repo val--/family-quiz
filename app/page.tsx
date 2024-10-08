@@ -7,10 +7,19 @@ import { GuestMember } from './types/custom-types';
 
 const guests: GuestMember[] = [
   {
-    id: "guest",
-    name: "Invité",
-    email: "guest@mail.com",
+    id: "1",
+    name: "Michka",
     photo: "/images/guest.png",
+  },
+  {
+    id: "2",
+    name: "Potiron",
+    photo: "/images/rond.png",
+  },
+  {
+    id: "3",
+    name: "Moussa",
+    photo: "/images/moussa.png",
   }
 ];
 
@@ -48,18 +57,34 @@ export default function Home() {
   return (
     <div className="min-h-screen flex flex-col items-center justify-center bg-gradient-to-r from-blue-400 via-purple-500 to-pink-500 p-2">
       <div className="text-center">
+
         <h1 className="text-white text-5xl font-bold mb-8">
           Bienvenue sur le {process.env.NEXT_PUBLIC_APP_NAME || "Family"} Quiz <span>🐱</span>
         </h1>
+
         <p className="text-white text-xl mb-6">
-          Choisis un membre de la famille pour commencer le quiz ! Qui es-tu ?
+          Tu dois te connecter pour jouer et sauvegarder ton score !
         </p>
 
-        <div className={`grid grid-cols-2 sm:grid-cols-2 gap-6 place-items-center ${guests.length === 1 ? 'md:grid-cols-1' : guests.length === 2 ? 'md:grid-cols-2' : 'md:grid-cols-4'}`}>
+        <div className="mb-16">
+          <Link  className="text-white bg-purple-600 hover:bg-purple-700 font-semibold py-2 px-6 rounded-full transition duration-300 transform hover:scale-105 shadow-lg" href="/login">
+              Connexion
+          </Link>
+          <Link className="text-white bg-pink-600 hover:bg-pink-700 font-semibold py-2 px-6 rounded-full transition duration-300 transform hover:scale-105 shadow-lg" href="/register">
+              Inscription
+          </Link>
+        </div>
+
+        <p className="text-white text-xl mb-6">
+          Sinon fais un petit essai :
+        </p>
+
+        <div className={`grid grid-cols-2 sm:grid-cols-2 gap-6 place-items-center ${guests.length === 1 ? 'md:grid-cols-1' : guests.length === 2 ? 'md:grid-cols-2' : guests.length === 3 ? 'md:grid-cols-3' : 'md:grid-cols-4'}`}>
           {guests.map((guest) => (
             <Link
               key={guest.id}
               href={`/quiz/`}
+              // href={`/quiz/${guest.id}`} TODO
               onClick={() => handleStartQuiz(guest)}
               className="relative flex flex-col items-center justify-center text-purple-900 transition-all duration-300 font-semibold w-48 h-48 hover:scale-110"
             >
@@ -72,7 +97,7 @@ export default function Home() {
                 }}
               />
               <span className="z-10 text-xl">
-                {guest.name}
+                Quiz {guest.name}
                 {(highestScorerId === guest.id && guest.lastScore !== null) && <span> 👑</span>}
               </span>
               <p className="text-white mt-2">
@@ -82,6 +107,9 @@ export default function Home() {
             </Link>
           ))}
         </div>
+
+
+        
       </div>
     </div>
   );

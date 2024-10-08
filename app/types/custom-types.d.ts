@@ -8,7 +8,6 @@ export interface QuestionType {
 export interface GuestMember {
     id: string;
     name: string;
-    email: string;
     photo: string;
     lastScore?: number;
   }
