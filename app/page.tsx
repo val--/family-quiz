@@ -3,50 +3,19 @@
 import Link from "next/link";
 import { useState, useEffect } from "react";
 
-interface FamilyMember {
-  id: string;
-  name: string;
-  email: string;
-  photo: string;
-  lastScore?: number;
-}
+import { GuestMember } from './types/custom-types';
 
-const familyMembers: FamilyMember[] = process.env.NODE_ENV === "production" ? [
+const guests: GuestMember[] = [
   {
     id: "guest",
     name: "Invité",
     email: "guest@mail.com",
     photo: "/images/guest.png",
   }
-] : [
-  {
-    id: "1",
-    name: "Ybba",
-    email: "user@mail.com",
-    photo: "/images/cardi.png",
-  },
-  {
-    id: "2",
-    name: "Adèle",
-    email: "user@mail.com",
-    photo: "/images/adele2.png",
-  },
-  {
-    id: "3",
-    name: "Julie",
-    email: "user@mail.com",
-    photo: "/images/julie.png",
-  },
-  {
-    id: "4",
-    name: "Valentin",
-    email: "user@mail.com",
-    photo: "/images/valentin.png",
-  },
 ];
 
 const getLastScores = () => {
-  return familyMembers.map((member) => {
+  return guests.map((member) => {
     const lastScore = localStorage.getItem(`score_${member.id}`);
     return {
       ...member,
@@ -56,29 +25,25 @@ const getLastScores = () => {
 };
 
 export default function Home() {
-  const [members, setMembers] = useState<FamilyMember[]>([]);
+  const [guests, setGuests] = useState<GuestMember[]>([]);
   const [highestScorerId, setHighestScorerId] = useState<string | null>(null);
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     const membersWithScores = getLastScores();
-    setMembers(membersWithScores);
+    setGuests(membersWithScores);
 
     const highestScorer = membersWithScores.reduce((max, member) => {
       return member.lastScore && member.lastScore > (max.lastScore || 0) ? member : max;
     }, membersWithScores[0]);
 
     setHighestScorerId(highestScorer.id);
-    setLoading(false); // Stop loading once data is fetched
+    setLoading(false);
   }, []);
 
-  const handleStartQuiz = (member: FamilyMember) => {
-    localStorage.setItem("currentUser", JSON.stringify(member)); // Store selected user in localStorage
+  const handleStartQuiz = (guest: GuestMember) => {
+    localStorage.setItem("currentUser", JSON.stringify(guest));
   };
-
-  if (loading) {
-    return <div className="text-white text-2xl">Chargement...</div>;
-  }
 
   return (
     <div className="min-h-screen flex flex-col items-center justify-center bg-gradient-to-r from-blue-400 via-purple-500 to-pink-500 p-2">
@@ -90,28 +55,28 @@ export default function Home() {
           Choisis un membre de la famille pour commencer le quiz ! Qui es-tu ?
         </p>
 
-        <div className={`grid grid-cols-2 sm:grid-cols-2 gap-6 place-items-center ${members.length === 1 ? 'md:grid-cols-1' : members.length === 2 ? 'md:grid-cols-2' : 'md:grid-cols-4'}`}>
-          {members.map((member) => (
+        <div className={`grid grid-cols-2 sm:grid-cols-2 gap-6 place-items-center ${guests.length === 1 ? 'md:grid-cols-1' : guests.length === 2 ? 'md:grid-cols-2' : 'md:grid-cols-4'}`}>
+          {guests.map((guest) => (
             <Link
-              key={member.id}
+              key={guest.id}
               href={`/quiz/`}
-              onClick={() => handleStartQuiz(member)}
+              onClick={() => handleStartQuiz(guest)}
               className="relative flex flex-col items-center justify-center text-purple-900 transition-all duration-300 font-semibold w-48 h-48 hover:scale-110"
             >
               <img
-                src={member.photo}
-                alt={`Photo de ${member.name}`}
+                src={guest.photo}
+                alt={`Photo de ${guest.name}`}
                 className="w-28 h-28 rounded-full mb-2 object-cover"
                 onError={(e) => {
                   e.currentTarget.src = "/images/default-avatar.png";
                 }}
               />
               <span className="z-10 text-xl">
-                {member.name}
-                {(highestScorerId === member.id && member.lastScore !== null) && <span> 👑</span>}
+                {guest.name}
+                {(highestScorerId === guest.id && guest.lastScore !== null) && <span> 👑</span>}
               </span>
               <p className="text-white mt-2">
-                {member.lastScore !== null ? `Dernier score: ${member.lastScore}` : "Pas de score"}
+                {guest.lastScore !== null ? `Dernier score: ${guest.lastScore}` : "Pas de score"}
               </p>
               <div className="absolute inset-0 opacity-0 rounded-full hover:opacity-10 transition-opacity duration-300"></div>
             </Link>

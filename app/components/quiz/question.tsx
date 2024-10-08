@@ -1,5 +1,4 @@
 import React, { useState } from 'react';
-
 import { QuestionType } from '../../types/custom-types';
 
 interface QuestionProps {
@@ -8,68 +7,69 @@ interface QuestionProps {
 }
 
 const Question: React.FC<QuestionProps> = ({ question, handleAnswer }) => {
-  const [activeOption, setActiveOption] = useState<string | null>(null);
-  const [isCorrect, setIsCorrect] = useState<boolean | null>(null);
+  const [answerState, setAnswerState] = useState<{
+    selectedOption: string | null;
+    isCorrect: boolean | null;
+  }>({ selectedOption: null, isCorrect: null });
 
   const handleOptionClick = (option: string) => {
     const correct = option === question.answer;
-    setActiveOption(option);
-    setIsCorrect(correct);
+    setAnswerState({ selectedOption: option, isCorrect: correct });
 
     handleAnswer(correct);
 
     setTimeout(() => {
-      setActiveOption(null);
-      setIsCorrect(null);
+      setAnswerState({ selectedOption: null, isCorrect: null });
     }, 5000);
   };
 
   const emojis = ["🎉", "👏", "💪", "✨", "😎", "😀"];
   const failureEmojis = ["😔", "😢", "💔", "🙁", "💩", "😤"];
-  const successEmoji = emojis[Math.floor(Math.random() * emojis.length)];
-  const failureEmoji = failureEmojis[Math.floor(Math.random() * failureEmojis.length)];
+  const selectedEmoji = answerState.isCorrect
+    ? emojis[Math.floor(Math.random() * emojis.length)]
+    : failureEmojis[Math.floor(Math.random() * failureEmojis.length)];
 
   return (
     <div>
       <h3 className="text-lg font-semibold mb-2 text-gray-900">
-        {!!activeOption ? (
+        {answerState.selectedOption ? (
           <span>
-            {isCorrect ? `${successEmoji} Bravo !` : `${failureEmoji} Raté ! La bonne réponse était "${question.answer}".`}
+            {answerState.isCorrect
+              ? `${selectedEmoji} Bravo !`
+              : `${selectedEmoji} Raté ! La bonne réponse était "${question.answer}".`}
           </span>
         ) : (
           question.question
         )}
       </h3>
       <p className="text-sm text-gray-600 mb-4">
-        {!!activeOption ? question.anecdote : <span>&nbsp;</span>}
+        {answerState.selectedOption ? question.anecdote : <span>&nbsp;</span>}
       </p>
       <div className="grid grid-cols-1 gap-3">
         {question.answers.map((option, index) => (
-          <div key={index} className="relative">
-            <button
-              className={`w-full p-3 rounded-lg text-white font-medium text-center transition-all duration-300 relative overflow-hidden ${
-                option === activeOption
-                  ? isCorrect
-                    ? 'bg-green-500'
-                    : 'bg-red-500 animate-shake'
-                  : 'bg-purple-600 hover:bg-purple-700'
-              }`}
-              onClick={() => handleOptionClick(option)}
-              disabled={!!activeOption}
-            >
-              {option}
-              {/* Progress Bar */}
-              {option === activeOption && (
-                <div className="absolute inset-0">
-                  <div className="progress-bar absolute bottom-0 left-0 h-1 bg-white animate-progress"></div>
-                </div>
-              )}
-            </button>
-          </div>
+          <button
+            key={index}
+            className={`w-full p-3 rounded-lg text-white font-medium text-center transition-all duration-300 relative overflow-hidden ${
+              option === answerState.selectedOption
+                ? answerState.isCorrect
+                  ? 'bg-green-500'
+                  : 'bg-red-500 animate-shake'
+                : 'bg-purple-600 hover:bg-purple-700'
+            }`}
+            onClick={() => handleOptionClick(option)}
+            disabled={!!answerState.selectedOption}
+          >
+            {option}
+            {option === answerState.selectedOption && (
+              <div className="absolute inset-0">
+                <div className="progress-bar absolute bottom-0 left-0 h-1 bg-white animate-progress"></div>
+              </div>
+            )}
+          </button>
         ))}
       </div>
-      
-      {/* Shake animation for wrong answers and progress bar animation */}
+
+      {/* TODO - Move this CSS outside! */}
       <style jsx>{`
         @keyframes shake {
           0%, 100% {
@@ -102,7 +102,6 @@ const Question: React.FC<QuestionProps> = ({ question, handleAnswer }) => {
         .animate-progress {
           animation: progress 5s linear forwards;
         }
-
       `}</style>
     </div>
   );

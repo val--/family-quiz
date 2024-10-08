@@ -3,7 +3,6 @@
 import React, { useState, useEffect } from 'react';
 import Question from './question';
 import Result from './result';
-
 import { QuestionType } from '../../types/custom-types';
 
 interface QuizProps {
@@ -11,54 +10,47 @@ interface QuizProps {
   questions: QuestionType[];
 }
 
+const shuffleArray = (array: QuestionType[]) => { // TODO - move this outside
+  return array
+    .map((item) => ({ ...item, sort: Math.random() }))
+    .sort((a, b) => a.sort - b.sort)
+    .map(({ sort, ...item }) => item);
+};
+
 const Quiz: React.FC<QuizProps> = ({ title, questions }) => {
   const [shuffledQuestions, setShuffledQuestions] = useState<QuestionType[]>([]);
   const [currentQuestionIndex, setCurrentQuestionIndex] = useState(0);
-  const [nextQuestionIndex, setNextQuestionIndex] = useState<number | null>(null);
   const [score, setScore] = useState(0);
   const [showResult, setShowResult] = useState(false);
-  const [currentUser, setCurrentUser] = useState(null);
-
-  const shuffleArray = (array: QuestionType[]) => {
-    for (let i = array.length - 1; i > 0; i--) {
-      const j = Math.floor(Math.random() * (i + 1));
-      [array[i], array[j]] = [array[j], array[i]];
-    }
-    return array;
-  };
+  const [currentUser, setCurrentUser] = useState<any>(null);
 
   useEffect(() => {
     setShuffledQuestions(shuffleArray([...questions]));
-    const user = JSON.parse(localStorage.getItem("currentUser"));
+    const user = JSON.parse(localStorage.getItem("currentUser") || "null");
     setCurrentUser(user);
   }, [questions]);
 
   const handleAnswer = (isCorrect: boolean) => {
-    if (isCorrect) {
-      setScore((prevScore) => prevScore + 1);
-    }
+    if (isCorrect) setScore((prev) => prev + 1);
 
-    const nextQuestionIdx = currentQuestionIndex + 1;
+    const nextQuestionIndex = currentQuestionIndex + 1;
 
-    if (nextQuestionIdx < shuffledQuestions.length) {
-      setNextQuestionIndex(nextQuestionIdx);
+    if (nextQuestionIndex < shuffledQuestions.length) {
       setTimeout(() => {
-        setCurrentQuestionIndex(nextQuestionIdx); // Update the actual question index after timeout
-        setNextQuestionIndex(null); // Reset the nextQuestionIndex
+        setCurrentQuestionIndex(nextQuestionIndex);
       }, 5000);
     } else {
       setTimeout(() => {
         setShowResult(true);
         if (currentUser) {
-          localStorage.setItem(`score_${currentUser.id}`, (score + (isCorrect ? 1 : 0)).toString());
+          const finalScore = score + (isCorrect ? 1 : 0);
+          localStorage.setItem(`score_${currentUser.id}`, finalScore.toString());
         }
       }, 5000);
     }
   };
 
-  if (!shuffledQuestions.length) {
-    return <div>Loading...</div>; // Avoid rendering before the questions are loaded
-  }
+  if (!shuffledQuestions.length) return <div>Chargement...</div>;
 
   return (
     <div className="min-h-screen flex flex-col bg-gradient-to-r from-blue-500 via-purple-600 to-pink-500">
@@ -86,9 +78,7 @@ const Quiz: React.FC<QuizProps> = ({ title, questions }) => {
               />
               <div className="flex justify-between mt-6 text-lg text-gray-700">
                 <p>Votre score: <strong>{score} point(s)</strong></p>
-                <p>
-                  Question {nextQuestionIndex !== null ? currentQuestionIndex + 1 : currentQuestionIndex + 1} / {shuffledQuestions.length}
-                </p>
+                <p>Question {currentQuestionIndex + 1} / {shuffledQuestions.length}</p>
               </div>
             </div>
           ) : (
