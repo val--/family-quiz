@@ -62,29 +62,30 @@ export default function Home() {
           Bienvenue sur le {process.env.NEXT_PUBLIC_APP_NAME || "Family"} Quiz <span>🐱</span>
         </h1>
 
-        <p className="text-white text-xl mb-6">
-          Tu dois te connecter pour jouer et sauvegarder ton score !
-        </p>
+        <div className="hidden">
+          <p className="text-white text-xl mb-6">
+            Tu dois te connecter pour jouer et sauvegarder ton score !
+          </p>
 
-        <div className="mb-16">
-          <Link  className="text-white bg-purple-600 hover:bg-purple-700 font-semibold py-2 px-6 rounded-full transition duration-300 transform hover:scale-105 shadow-lg" href="/login">
-              Connexion
-          </Link>
-          <Link className="text-white bg-pink-600 hover:bg-pink-700 font-semibold py-2 px-6 rounded-full transition duration-300 transform hover:scale-105 shadow-lg" href="/register">
-              Inscription
-          </Link>
+          <div className="mb-16">
+            <Link  className="text-white bg-purple-600 hover:bg-purple-700 font-semibold py-2 px-6 rounded-full transition duration-300 transform hover:scale-105 shadow-lg" href="/login">
+                Connexion
+            </Link>
+            <Link className="text-white bg-pink-600 hover:bg-pink-700 font-semibold py-2 px-6 rounded-full transition duration-300 transform hover:scale-105 shadow-lg" href="/register">
+                Inscription
+            </Link>
+          </div>
         </div>
 
         <p className="text-white text-xl mb-6">
-          Sinon fais un petit essai :
+          Choisis un thème pour tester ta culture :
         </p>
 
         <div className={`grid grid-cols-2 sm:grid-cols-2 gap-6 place-items-center ${quizList.length === 1 ? 'md:grid-cols-1' : quizList.length === 2 ? 'md:grid-cols-2' : quizList.length === 3 ? 'md:grid-cols-3' : 'md:grid-cols-4'}`}>
           {quizList.map((quiz) => (
             <Link
               key={quiz.id}
-              href={`/quiz/`}
-              //href={`/quiz/${quiz.id}`}
+              href={`/quiz/${quiz.id}`}
               onClick={() => handleStartQuiz(quiz)}
               className="relative flex flex-col items-center justify-center text-purple-900 transition-all duration-300 font-semibold w-48 h-48 hover:scale-110"
             >

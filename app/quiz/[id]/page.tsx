@@ -1,15 +1,16 @@
-import { useRouter } from 'next/router';
+"use client";
+
+import { useParams } from 'next/navigation';
 import { useEffect, useState } from 'react';
-import Quiz from '../components/quiz/quiz';
+import Quiz from '../../components/quiz/quiz';
 
 export default function QuizPage() {
-  const router = useRouter();
-  const { id } = router.query;
+  const { id } = useParams();
   const [quizData, setQuizData] = useState<any>(null);
 
   useEffect(() => {
     if (id) {
-      import(`../sample${id}.json`)
+      import(`../../sample${id}.json`)
         .then((module) => {
           setQuizData(module.default);
         })
