@@ -5,7 +5,7 @@ export interface QuestionType {
     anecdote: string;
 }
 
-export interface GuestMember {
+export interface SampleQuiz { // From a json file, not final structure
     id: string;
     name: string;
     photo: string;

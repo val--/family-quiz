@@ -3,28 +3,28 @@
 import Link from "next/link";
 import { useState, useEffect } from "react";
 
-import { GuestMember } from './types/custom-types';
+import { SampleQuiz as Quiz } from './types/custom-types';
 
-const guests: GuestMember[] = [
+const quizList: Quiz[] = [
   {
     id: "1",
-    name: "Michka",
+    name: "Orthographe",
     photo: "/images/guest.png",
   },
   {
     id: "2",
-    name: "Potiron",
+    name: "Les Mamans",
     photo: "/images/rond.png",
   },
   {
     id: "3",
-    name: "Moussa",
+    name: "Culture G",
     photo: "/images/moussa.png",
   }
 ];
 
 const getLastScores = () => {
-  return guests.map((member) => {
+  return quizList.map((member) => {
     const lastScore = localStorage.getItem(`score_${member.id}`);
     return {
       ...member,
@@ -34,13 +34,13 @@ const getLastScores = () => {
 };
 
 export default function Home() {
-  const [guests, setGuests] = useState<GuestMember[]>([]);
+  const [quizList, setQuiz] = useState<Quiz[]>([]);
   const [highestScorerId, setHighestScorerId] = useState<string | null>(null);
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     const membersWithScores = getLastScores();
-    setGuests(membersWithScores);
+    setQuiz(membersWithScores);
 
     const highestScorer = membersWithScores.reduce((max, member) => {
       return member.lastScore && member.lastScore > (max.lastScore || 0) ? member : max;
@@ -50,7 +50,7 @@ export default function Home() {
     setLoading(false);
   }, []);
 
-  const handleStartQuiz = (guest: GuestMember) => {
+  const handleStartQuiz = (guest: Quiz) => {
     localStorage.setItem("currentUser", JSON.stringify(guest));
   };
 
@@ -79,37 +79,34 @@ export default function Home() {
           Sinon fais un petit essai :
         </p>
 
-        <div className={`grid grid-cols-2 sm:grid-cols-2 gap-6 place-items-center ${guests.length === 1 ? 'md:grid-cols-1' : guests.length === 2 ? 'md:grid-cols-2' : guests.length === 3 ? 'md:grid-cols-3' : 'md:grid-cols-4'}`}>
-          {guests.map((guest) => (
+        <div className={`grid grid-cols-2 sm:grid-cols-2 gap-6 place-items-center ${quizList.length === 1 ? 'md:grid-cols-1' : quizList.length === 2 ? 'md:grid-cols-2' : quizList.length === 3 ? 'md:grid-cols-3' : 'md:grid-cols-4'}`}>
+          {quizList.map((quiz) => (
             <Link
-              key={guest.id}
+              key={quiz.id}
               href={`/quiz/`}
-              // href={`/quiz/${guest.id}`} TODO
-              onClick={() => handleStartQuiz(guest)}
+              //href={`/quiz/${quiz.id}`}
+              onClick={() => handleStartQuiz(quiz)}
               className="relative flex flex-col items-center justify-center text-purple-900 transition-all duration-300 font-semibold w-48 h-48 hover:scale-110"
             >
               <img
-                src={guest.photo}
-                alt={`Photo de ${guest.name}`}
+                src={quiz.photo}
+                alt={`Photo de ${quiz.name}`}
                 className="w-28 h-28 rounded-full mb-2 object-cover"
                 onError={(e) => {
                   e.currentTarget.src = "/images/default-avatar.png";
                 }}
               />
               <span className="z-10 text-xl">
-                Quiz {guest.name}
-                {(highestScorerId === guest.id && guest.lastScore !== null) && <span> 👑</span>}
+                {quiz.name}
+                {(quiz.lastScore !== null && quiz.lastScore !== 0) && <span> 👑</span>}
               </span>
               <p className="text-white mt-2">
-                {guest.lastScore !== null ? `Dernier score: ${guest.lastScore}` : "Pas de score"}
+                {quiz.lastScore !== null ? `Dernier score: ${quiz.lastScore}` : "Pas de score"}
               </p>
               <div className="absolute inset-0 opacity-0 rounded-full hover:opacity-10 transition-opacity duration-300"></div>
             </Link>
           ))}
         </div>
-
-
-        
       </div>
     </div>
   );
