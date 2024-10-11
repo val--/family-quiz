@@ -13,13 +13,18 @@ const quizList: Quiz[] = [
   },
   {
     id: "2",
-    name: "Les Mamans",
+    name: "Les mamans",
     photo: "/images/2.png",
   },
   {
     id: "3",
     name: "Culture G",
     photo: "/images/3.png",
+  },
+  {
+    id: "4",
+    name: "Les chats",
+    photo: "/images/4.png",
   }
 ];
 
