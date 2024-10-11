@@ -1,9 +1,11 @@
+// pages/index.tsx
+
 "use client";
 
 import Link from "next/link";
 import { useState, useEffect } from "react";
-
 import { SampleQuiz as Quiz } from './types/custom-types';
+import LoadingSpinner from './components/loading/LoadingSpinner';
 
 const quizList: Quiz[] = [
   {
@@ -59,29 +61,16 @@ export default function Home() {
     localStorage.setItem("currentUser", JSON.stringify(guest));
   };
 
+  if (loading) {
+    return <LoadingSpinner />;
+  }
+
   return (
     <div className="min-h-screen flex flex-col items-center justify-center bg-gradient-to-r from-blue-400 via-purple-500 to-pink-500 p-2">
       <div className="text-center">
-
         <h1 className="text-white text-5xl font-bold mb-8">
           Bienvenue sur le {process.env.NEXT_PUBLIC_APP_NAME || "Family"} Quiz
         </h1>
-
-        <div className="hidden">
-          <p className="text-white text-xl mb-6">
-            Tu dois te connecter pour jouer et sauvegarder ton score !
-          </p>
-
-          <div className="mb-16">
-            <Link  className="text-white bg-purple-600 hover:bg-purple-700 font-semibold py-2 px-6 rounded-full transition duration-300 transform hover:scale-105 shadow-lg" href="/login">
-                Connexion
-            </Link>
-            <Link className="text-white bg-pink-600 hover:bg-pink-700 font-semibold py-2 px-6 rounded-full transition duration-300 transform hover:scale-105 shadow-lg" href="/register">
-                Inscription
-            </Link>
-          </div>
-        </div>
-
         <p className="text-white text-xl mb-6">
           Choisis un thème pour tester ta culture :
         </p>

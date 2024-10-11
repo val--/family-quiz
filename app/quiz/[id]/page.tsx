@@ -21,7 +21,7 @@ export default function QuizPage() {
   }, [id]);
 
   if (!quizData) {
-    return <p>Loading...</p>;
+    return null;
   }
 
   return <Quiz title={quizData.theme} questions={quizData.quiz} />;
