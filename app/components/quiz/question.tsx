@@ -31,7 +31,7 @@ const Question: React.FC<QuestionProps> = ({ question, handleAnswer }) => {
 
   return (
     <div>
-      <h3 className="text-lg font-semibold mb-2 text-gray-900">
+      <h3 className="text-lg font-semibold mb-2 text-gray-900" style={{ minHeight: '3rem' }}>
         {answerState.selectedOption ? (
           <span>
             {answerState.isCorrect
@@ -43,7 +43,7 @@ const Question: React.FC<QuestionProps> = ({ question, handleAnswer }) => {
         )}
       </h3>
 
-      <p className={`text-sm text-gray-600 mb-4 ${answerState.selectedOption ? "line-clamp-2" : ""}`} style={{ height: '2.5rem' }} >
+      <p className={`text-sm text-gray-600 mb-4 ${answerState.selectedOption ? "line-clamp-2" : ""}`}style={{ height: '2.5rem' }}>
         {answerState.selectedOption ? question.anecdote : <span>&nbsp;</span>}
       </p>
 
@@ -71,7 +71,6 @@ const Question: React.FC<QuestionProps> = ({ question, handleAnswer }) => {
         ))}
       </div>
 
-      {/* TODO move css outside */}
       <style jsx>{`
         @keyframes shake {
           0%, 100% {

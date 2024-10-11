@@ -10,7 +10,9 @@ const quizList: Quiz[] = [
   { id: "1", name: "Orthographe", photo: "/images/1.png" },
   { id: "2", name: "Les mamans", photo: "/images/2.png" },
   { id: "3", name: "Culture G", photo: "/images/3.png" },
-  { id: "4", name: "Les chats", photo: "/images/4.png" }
+  { id: "4", name: "Les chats", photo: "/images/4.png" },
+  { id: "5", name: "Le rock gothique", photo: "/images/5.png" },
+  { id: "6", name: "L'Histoire de France", photo: "/images/6.png" }
 ];
 
 const getLastScores = () => 

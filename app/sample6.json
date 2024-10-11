@@ -1,0 +1,247 @@
+{
+    "provider": "Family Quiz",
+    "author": "Jean Bon",
+    "theme": "Histoire de France",
+    "quiz": [
+        {
+            "id": 1,
+            "question": "Quel roi de France a été surnommé 'le Roi-Soleil' ?",
+            "answers": [
+                "Louis XIV",
+                "Louis XVI",
+                "Louis XIII",
+                "Henri IV"
+            ],
+            "answer": "Louis XIV",
+            "anecdote": "Louis XIV, surnommé le Roi-Soleil, a régné pendant 72 ans, faisant de son règne l'un des plus longs de l'histoire."
+        },
+        {
+            "id": 2,
+            "question": "En quelle année a eu lieu la Révolution française ?",
+            "answers": [
+                "1776",
+                "1792",
+                "1789",
+                "1804"
+            ],
+            "answer": "1789",
+            "anecdote": "La Révolution française a commencé en 1789 avec la prise de la Bastille, marquant le début de la fin de la monarchie en France."
+        },
+        {
+            "id": 3,
+            "question": "Qui a mené les troupes françaises à la victoire lors de la bataille d'Orléans en 1429 ?",
+            "answers": [
+                "Jeanne d'Arc",
+                "Charles VII",
+                "Philippe le Bel",
+                "Henri IV"
+            ],
+            "answer": "Jeanne d'Arc",
+            "anecdote": "Jeanne d'Arc est devenue une héroïne nationale pour avoir libéré Orléans et aidé Charles VII à accéder au trône."
+        },
+        {
+            "id": 4,
+            "question": "Quel empereur a été couronné en 1804 à Notre-Dame de Paris ?",
+            "answers": [
+                "Napoléon Ier",
+                "Charlemagne",
+                "Louis XVIII",
+                "Henri V"
+            ],
+            "answer": "Napoléon Ier",
+            "anecdote": "Napoléon Bonaparte s'est couronné lui-même empereur des Français en 1804 lors d'une cérémonie fastueuse à Notre-Dame."
+        },
+        {
+            "id": 5,
+            "question": "Quel événement célèbre le 11 novembre en France ?",
+            "answers": [
+                "La fin de la Première Guerre mondiale",
+                "La prise de la Bastille",
+                "Le début de la Seconde Guerre mondiale",
+                "La bataille de Verdun"
+            ],
+            "answer": "La fin de la Première Guerre mondiale",
+            "anecdote": "Le 11 novembre commémore l'armistice de 1918, qui a mis fin à la Première Guerre mondiale."
+        },
+        {
+            "id": 6,
+            "question": "Quel roi a été assassiné par François Ravaillac en 1610 ?",
+            "answers": [
+                "Henri IV",
+                "Louis XIII",
+                "François Ier",
+                "Charles IX"
+            ],
+            "answer": "Henri IV",
+            "anecdote": "Henri IV a été assassiné par François Ravaillac à Paris, un meurtre qui a choqué le royaume de France."
+        },
+        {
+            "id": 7,
+            "question": "Qui était le premier président de la Ve République française ?",
+            "answers": [
+                "Charles de Gaulle",
+                "Georges Pompidou",
+                "François Mitterrand",
+                "René Coty"
+            ],
+            "answer": "Charles de Gaulle",
+            "anecdote": "Charles de Gaulle est devenu le premier président de la Ve République en 1959, marquant le début d'une nouvelle ère politique en France."
+        },
+        {
+            "id": 8,
+            "question": "Quel traité a mis fin à la Première Guerre mondiale en 1919 ?",
+            "answers": [
+                "Le traité de Versailles",
+                "Le traité de Paris",
+                "Le traité de Tilsit",
+                "Le traité de Rome"
+            ],
+            "answer": "Le traité de Versailles",
+            "anecdote": "Le traité de Versailles, signé en 1919, a mis fin à la Première Guerre mondiale et imposé des conditions sévères à l'Allemagne."
+        },
+        {
+            "id": 9,
+            "question": "Comment s'appelle la célèbre bataille de 1815 où Napoléon a été définitivement vaincu ?",
+            "answers": [
+                "La bataille de Waterloo",
+                "La bataille d'Austerlitz",
+                "La bataille de Leipzig",
+                "La bataille de Trafalgar"
+            ],
+            "answer": "La bataille de Waterloo",
+            "anecdote": "La défaite de Napoléon à Waterloo a mis fin à son règne et à ses ambitions de domination européenne."
+        },
+        {
+            "id": 10,
+            "question": "Quel document, signé en 1598, a accordé aux protestants la liberté de culte en France ?",
+            "answers": [
+                "L'édit de Nantes",
+                "L'édit de Fontainebleau",
+                "Le traité de Paris",
+                "La Déclaration des droits de l'homme"
+            ],
+            "answer": "L'édit de Nantes",
+            "anecdote": "L'édit de Nantes a été signé par Henri IV pour apaiser les conflits religieux entre catholiques et protestants en France."
+        },
+        {
+            "id": 11,
+            "question": "Quelle bataille est considérée comme l'une des plus longues et destructrices de la Première Guerre mondiale ?",
+            "answers": [
+                "La bataille de Verdun",
+                "La bataille de la Somme",
+                "La bataille de Marne",
+                "La bataille de Gallipoli"
+            ],
+            "answer": "La bataille de Verdun",
+            "anecdote": "La bataille de Verdun, qui a duré 10 mois en 1916, est l'une des plus symboliques de la Grande Guerre en France."
+        },
+        {
+            "id": 12,
+            "question": "Quel roi de France est connu pour avoir déclaré 'L'État, c'est moi' ?",
+            "answers": [
+                "Louis XIV",
+                "François Ier",
+                "Louis XVI",
+                "Napoléon Ier"
+            ],
+            "answer": "Louis XIV",
+            "anecdote": "Cette phrase est attribuée à Louis XIV, symbolisant son règne absolu sur la France."
+        },
+        {
+            "id": 13,
+            "question": "Quel événement historique s'est déroulé le 14 juillet 1789 en France ?",
+            "answers": [
+                "La prise de la Bastille",
+                "La chute de Napoléon",
+                "La proclamation de la République",
+                "La fuite de Louis XVI"
+            ],
+            "answer": "La prise de la Bastille",
+            "anecdote": "La prise de la Bastille est un symbole de la Révolution française et est célébrée chaque année le 14 juillet comme fête nationale."
+        },
+        {
+            "id": 14,
+            "question": "Qui a dirigé la France pendant l'occupation allemande pendant la Seconde Guerre mondiale ?",
+            "answers": [
+                "Philippe Pétain",
+                "Charles de Gaulle",
+                "Georges Clemenceau",
+                "François Mitterrand"
+            ],
+            "answer": "Philippe Pétain",
+            "anecdote": "Philippe Pétain a dirigé le régime de Vichy, un gouvernement collaborant avec l'Allemagne nazie pendant la Seconde Guerre mondiale."
+        },
+        {
+            "id": 15,
+            "question": "Quel personnage historique français a mené la résistance contre les Romains pendant la bataille d'Alésia en 52 av. J.-C. ?",
+            "answers": [
+                "Vercingétorix",
+                "Clovis",
+                "Charlemagne",
+                "Jules César"
+            ],
+            "answer": "Vercingétorix",
+            "anecdote": "Vercingétorix a mené les Gaulois contre les Romains lors de la bataille d'Alésia, mais a finalement été vaincu par Jules César."
+        },
+        {
+            "id": 16,
+            "question": "En quelle année la Ve République française a-t-elle été instaurée ?",
+            "answers": [
+                "1946",
+                "1958",
+                "1962",
+                "1974"
+            ],
+            "answer": "1958",
+            "anecdote": "La Ve République a été fondée en 1958 sous la présidence de Charles de Gaulle, remplaçant la IVe République."
+        },
+        {
+            "id": 17,
+            "question": "Qui était surnommé 'l'Aigle' pendant son règne en France ?",
+            "answers": [
+                "Napoléon Ier",
+                "Henri IV",
+                "Louis XIV",
+                "François Ier"
+            ],
+            "answer": "Napoléon Ier",
+            "anecdote": "Napoléon Ier était surnommé 'l'Aigle', symbolisant son règne impérial et son pouvoir militaire."
+        },
+        {
+            "id": 18,
+            "question": "Quelle reine de France a été exécutée en 1793 pendant la Révolution française ?",
+            "answers": [
+                "Marie-Antoinette",
+                "Catherine de Médicis",
+                "Anne d'Autriche",
+                "Blanche de Castille"
+            ],
+            "answer": "Marie-Antoinette",
+            "anecdote": "Marie-Antoinette, épouse de Louis XVI, a été guillotinée en 1793, accusée de trahison par les révolutionnaires."
+        },
+        {
+            "id": 19,
+            "question": "Quel général français a libéré Paris en 1944 pendant la Seconde Guerre mondiale ?",
+            "answers": [
+                "Charles de Gaulle",
+                "Philippe Leclerc",
+                "Jean Moulin",
+                "Georges Patton"
+            ],
+            "answer": "Philippe Leclerc",
+            "anecdote": "Le général Philippe Leclerc a joué un rôle clé dans la libération de Paris en août 1944, un tournant dans la guerre contre l'occupant nazi."
+        },
+        {
+            "id": 20,
+            "question": "Quel roi a été guillotiné en 1793 lors de la Révolution française ?",
+            "answers": [
+                "Louis XVI",
+                "Louis XIV",
+                "Charles X",
+                "Philippe II"
+            ],
+            "answer": "Louis XVI",
+            "anecdote": "Louis XVI, dernier roi de France avant la Révolution, a été guillotiné pour trahison le 21 janvier 1793."
+        }
+    ]
+}
