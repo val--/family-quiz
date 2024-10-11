@@ -73,7 +73,7 @@ const Quiz: React.FC<QuizProps> = ({ title, questions }) => {
         </div>
       )}
       <div className="flex items-center justify-center flex-grow">
-        <div className="quiz-container max-w-2xl bg-white bg-opacity-80 shadow-lg rounded-lg p-6">
+        <div className="quiz-container lg:min-w-[675px] lg:min-h-[500px] sm:min-w-[475px] sm:min-h-[500px] max-w-2xl bg-white bg-opacity-80 shadow-lg rounded-lg p-6">
           <h2 className="text-2xl font-bold mb-4 text-center text-purple-800">{title}</h2>
           {!showResult ? (
             <div>
