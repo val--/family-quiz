@@ -42,9 +42,11 @@ const Question: React.FC<QuestionProps> = ({ question, handleAnswer }) => {
           question.question
         )}
       </h3>
-      <p className="text-sm text-gray-600 mb-4">
+
+      <p className={`text-sm text-gray-600 mb-4 ${answerState.selectedOption ? "line-clamp-2" : ""}`} style={{ height: '2.5rem' }} >
         {answerState.selectedOption ? question.anecdote : <span>&nbsp;</span>}
       </p>
+
       <div className="grid grid-cols-1 gap-3">
         {question.answers.map((option, index) => (
           <button
@@ -69,7 +71,7 @@ const Question: React.FC<QuestionProps> = ({ question, handleAnswer }) => {
         ))}
       </div>
 
-      {/* TODO - Move this CSS outside! */}
+      {/* TODO move css outside */}
       <style jsx>{`
         @keyframes shake {
           0%, 100% {
@@ -101,6 +103,13 @@ const Question: React.FC<QuestionProps> = ({ question, handleAnswer }) => {
 
         .animate-progress {
           animation: progress 5s linear forwards;
+        }
+
+        .line-clamp-2 {
+          display: -webkit-box;
+          -webkit-line-clamp: 2;
+          -webkit-box-orient: vertical;
+          overflow: hidden;
         }
       `}</style>
     </div>

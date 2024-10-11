@@ -1,6 +1,6 @@
 # Family Quiz - A Quiz Application For Everyone
 
-![WIP project screenshot](app-screenshot.png "WIP project screenshot")
+![WIP project screenshot](./public/images/app-screenshot.png "WIP project screenshot")
 
 You can open this project with Visual Studio Code & hit "re-open with Dev Container". 
 
@@ -15,4 +15,4 @@ TODO:
 
 ---
 
-Note: as a quiz smaple, i used data from https://www.openquizzdb.org/
+Note: as a quiz sample, i used data from https://www.openquizzdb.org/
