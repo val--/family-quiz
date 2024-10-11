@@ -9,17 +9,17 @@ const quizList: Quiz[] = [
   {
     id: "1",
     name: "Orthographe",
-    photo: "/images/guest.png",
+    photo: "/images/1.png",
   },
   {
     id: "2",
     name: "Les Mamans",
-    photo: "/images/rond.png",
+    photo: "/images/2.png",
   },
   {
     id: "3",
     name: "Culture G",
-    photo: "/images/moussa.png",
+    photo: "/images/3.png",
   }
 ];
 
@@ -59,7 +59,7 @@ export default function Home() {
       <div className="text-center">
 
         <h1 className="text-white text-5xl font-bold mb-8">
-          Bienvenue sur le {process.env.NEXT_PUBLIC_APP_NAME || "Family"} Quiz <span>🐱</span>
+          Bienvenue sur le {process.env.NEXT_PUBLIC_APP_NAME || "Family"} Quiz
         </h1>
 
         <div className="hidden">
