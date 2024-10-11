@@ -1,4 +1,4 @@
-# Family Quiz - A Quiz Application For Everyone
+# Family Quiz - A Quiz Application
 
 ![WIP project screenshot](./public/images/app-screenshot.png "WIP project screenshot")
 
