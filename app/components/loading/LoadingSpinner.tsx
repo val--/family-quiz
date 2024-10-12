@@ -1,6 +1,6 @@
 const LoadingSpinner = () => {
     return (
-      <div className="min-h-screen flex flex-col items-center justify-center bg-gradient-to-r from-blue-400 via-purple-500 to-pink-500">
+      <div className="flex flex-col items-center justify-center h-full">
         <div className="flex items-center space-x-2">
           <svg
             className="w-10 h-10 text-white animate-spin"
@@ -26,7 +26,6 @@ const LoadingSpinner = () => {
         </div>
       </div>
     );
-  };
-  
-  export default LoadingSpinner;
-  
+};
+
+export default LoadingSpinner;
