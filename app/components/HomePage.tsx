@@ -12,6 +12,7 @@ interface HomePageProps {
 }
 
 export default function HomePage({ email }: HomePageProps) {
+  
   const router = useRouter();
 
   async function handleLogout() {
