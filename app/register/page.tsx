@@ -1,41 +1,42 @@
 "use client";
 
-import { useState } from "react";
+import { FormEvent, useState } from "react";
 import Link from "next/link";
+import { getAuth, createUserWithEmailAndPassword } from "firebase/auth";
+import { app } from "../../firebase";
+import { useRouter } from "next/navigation";
 
 export default function Register() {
-  const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const [confirmPassword, setConfirmPassword] = useState("");
+  const [confirmation, setConfirmation] = useState("");
+  const [error, setError] = useState("");
+  const router = useRouter();
 
-  const handleRegister = (e: React.FormEvent<HTMLFormElement>) => {
-    e.preventDefault();
-    // TODO
-};
+  async function handleSubmit(event: FormEvent) {
+    event.preventDefault();
+    setError("");
+
+    if (password !== confirmation) {
+      setError("Passwords don't match");
+      return;
+    }
+
+    try {
+      await createUserWithEmailAndPassword(getAuth(app), email, password);
+      router.push("/login");
+    } catch (e) {
+      setError((e as Error).message);
+    }
+  }
 
   return (
-    <div className="min-h-screen flex items-center justify-center bg-gradient-to-r from-blue-400 via-purple-500 to-pink-500 p-4">
+    <main className="flex min-h-screen flex-col items-center justify-center bg-gradient-to-r from-blue-400 via-purple-500 to-pink-500 p-4">
       <div className="bg-white shadow-lg rounded-lg p-8 max-w-md w-full">
         <h2 className="text-4xl font-bold text-purple-700 text-center mb-8">
           Créer mon compte
         </h2>
-        <form onSubmit={handleRegister} className="space-y-6">
-          <div>
-            <label className="block text-gray-700 font-medium mb-2" htmlFor="name">
-              Nom / Pseudonyme
-            </label>
-            <input
-              id="name"
-              type="text"
-              value={name}
-              onChange={(e) => setName(e.target.value)}
-              required
-              className="w-full p-3 border border-gray-300 rounded-lg focus:outline-none focus:border-purple-500"
-              placeholder="Entrez votre nom"
-            />
-          </div>
-
+        <form onSubmit={handleSubmit} className="space-y-6">
           <div>
             <label className="block text-gray-700 font-medium mb-2" htmlFor="email">
               Adresse Email
@@ -73,13 +74,19 @@ export default function Register() {
             <input
               id="confirm-password"
               type="password"
-              value={confirmPassword}
-              onChange={(e) => setConfirmPassword(e.target.value)}
+              value={confirmation}
+              onChange={(e) => setConfirmation(e.target.value)}
               required
               className="w-full p-3 border border-gray-300 rounded-lg focus:outline-none focus:border-purple-500"
               placeholder="Confirmez votre mot de passe"
             />
           </div>
+
+          {error && (
+            <div className="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded relative">
+              <span className="block sm:inline">{error}</span>
+            </div>
+          )}
 
           <button
             type="submit"
@@ -102,6 +109,6 @@ export default function Register() {
           </Link>
         </div>
       </div>
-    </div>
+    </main>
   );
 }

@@ -4,7 +4,6 @@ import React, { useState, useEffect, useCallback } from 'react';
 import Link from "next/link";
 import Question from './question';
 import Result from './result';
-import LoadingSpinner from '../../components/loading/LoadingSpinner';
 import { QuestionType } from '../../types/custom-types';
 
 interface QuizProps {
@@ -20,7 +19,6 @@ const shuffleArray = (array: QuestionType[]) => {
 };
 
 const Quiz: React.FC<QuizProps> = ({ title, questions }) => {
-
   const [shuffledQuestions, setShuffledQuestions] = useState<QuestionType[]>([]);
   const [currentQuestionIndex, setCurrentQuestionIndex] = useState(0);
   const [score, setScore] = useState(0);
@@ -55,7 +53,9 @@ const Quiz: React.FC<QuizProps> = ({ title, questions }) => {
     [currentQuestionIndex, shuffledQuestions.length, currentQuiz, score]
   );
 
-  if (!shuffledQuestions.length) return <LoadingSpinner />;
+  if (!shuffledQuestions.length) {
+    return null
+  }
 
   return (
     <div className="min-h-screen flex flex-col bg-gradient-to-r from-blue-500 via-purple-600 to-pink-500">

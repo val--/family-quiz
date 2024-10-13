@@ -1,16 +1,41 @@
 "use client";
 
-import { useState } from "react";
+import { FormEvent, useState } from "react";
 import Link from "next/link";
+import { useRouter } from "next/navigation";
+import { getAuth, signInWithEmailAndPassword } from "firebase/auth";
+import { app } from "../../firebase";
 
 export default function Login() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [error, setError] = useState("");
+  const router = useRouter();
 
-  const handleLogin = (e: React.FormEvent<HTMLFormElement>) => {
-    e.preventDefault();
-    // TODO
-  };
+  async function handleSubmit(event: FormEvent) {
+    event.preventDefault();
+    setError("");
+
+    try {
+      const credential = await signInWithEmailAndPassword(
+        getAuth(app),
+        email,
+        password
+      );
+      const idToken = await credential.user.getIdToken();
+
+      await fetch("/api/login", {
+        headers: {
+          Authorization: `Bearer ${idToken}`,
+        },
+      });
+
+      router.push("/");
+    } catch (e) {
+      console.log(e)
+      setError((e as Error).message);
+    }
+  }
 
   return (
     <div className="min-h-screen flex items-center justify-center bg-gradient-to-r from-blue-400 via-purple-500 to-pink-500 p-4">
@@ -18,7 +43,7 @@ export default function Login() {
         <h2 className="text-4xl font-bold text-purple-700 text-center mb-8">
           Connexion
         </h2>
-        <form onSubmit={handleLogin} className="space-y-6">
+        <form onSubmit={handleSubmit} className="space-y-6">
           <div>
             <label className="block text-gray-700 font-medium mb-2" htmlFor="email">
               Adresse Email
@@ -48,6 +73,12 @@ export default function Login() {
               placeholder="Entrez votre mot de passe"
             />
           </div>
+
+          {error && (
+            <div className="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded relative">
+              <span className="block sm:inline">{error}</span>
+            </div>
+          )}
 
           <button
             type="submit"

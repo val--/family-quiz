@@ -23,16 +23,12 @@ export default function QuizPage() {
   }, [id]);
 
   if (error) {
-    throw new Error("Failed to load quiz data"); // Will trigger the global error boundary (error.tsx)
+    throw new Error("Failed to load quiz data");
   }
 
   if (!quizData) {
     return null; // Return loading state here if needed?
   }
 
-  return (
-    <>
-      <Quiz title={quizData.theme} questions={quizData.quiz} />
-    </>
-  );
+  return <Quiz title={quizData.theme} questions={quizData.quiz} />
 }
