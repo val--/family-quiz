@@ -5,7 +5,7 @@ import { clientConfig, serverConfig } from "./config";
 const PUBLIC_PATHS = ['/register', '/login'];
 
 export async function middleware(request: NextRequest) {
-  return authMiddleware(request, {
+  /*return authMiddleware(request, {
     loginPath: "/api/login",
     logoutPath: "/api/logout",
     apiKey: clientConfig.apiKey,
@@ -50,7 +50,7 @@ export async function middleware(request: NextRequest) {
         publicPaths: PUBLIC_PATHS
       });
     }
-  });
+  });*/
 }
 
 export const config = {
