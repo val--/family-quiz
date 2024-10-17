@@ -1,7 +1,7 @@
 {
   "name": "Next.js Dev Container",
   "dockerFile": "../Dockerfile",
-  "forwardPorts": [3000],
+  "forwardPorts": [3000, 5432],
   "extensions": [
     "esbenp.prettier-vscode",
     "dbaeumer.vscode-eslint"
@@ -11,5 +11,20 @@
   },
   "postCreateCommand": "npm install",
   "postStartCommand": "npm run dev",
-  "remoteUser": "node"
+  "remoteUser": "node",
+  "services": {
+    "postgres": {
+      "image": "postgres",
+      "restart": "unless-stopped",
+      "environment": {
+        "POSTGRES_USER": "myuser",
+        "POSTGRES_PASSWORD": "mypassword",
+        "POSTGRES_DB": "mydb"
+      },
+      "ports": ["5432:5432"]
+    }
+  },
+  "mounts": [
+    "source=postgres-data,target=/var/lib/postgresql/data"
+  ]
 }
