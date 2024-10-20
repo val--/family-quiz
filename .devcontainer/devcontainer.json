@@ -1,31 +1,21 @@
 {
   "name": "Next.js Dev Container",
-  "dockerFile": "../Dockerfile",
-  "forwardPorts": [3000, 5432],
-  "extensions": [
-    "esbenp.prettier-vscode",
-    "dbaeumer.vscode-eslint"
-  ],
-  "settings": {
-    "terminal.integrated.defaultProfile.linux": "bash"
-  },
-  "postCreateCommand": "npm install",
-  "postStartCommand": "npm run dev",
-  //"postStartCommand": "npm run dev && npx prisma migrate dev --name init",
-  "remoteUser": "node",
-  "services": {
-    "postgres": {
-      "image": "postgres",
-      "restart": "unless-stopped",
-      "environment": {
-        "POSTGRES_USER": "myuser",
-        "POSTGRES_PASSWORD": "mypassword",
-        "POSTGRES_DB": "mydb"
+  "service": "nextjs",
+  "workspaceFolder": "/usr/src/app",
+  "dockerComposeFile": "../docker-compose.yml",
+  "forwardPorts": [3000, 5432, 5555],
+  "customizations": {
+    "vscode": {
+      "settings": { 
+        "terminal.integrated.defaultProfile.linux": "bash"
       },
-      "ports": ["5432:5432"]
+      "extensions": [
+        "esbenp.prettier-vscode",
+        "dbaeumer.vscode-eslint"
+      ]
     }
   },
-  "mounts": [
-    "source=postgres-data,target=/var/lib/postgresql/data"
-  ]
+  "postCreateCommand": "npm install && npx prisma migrate dev --name init",
+  "postStartCommand": "npm run dev",
+  "remoteUser": "node"
 }
