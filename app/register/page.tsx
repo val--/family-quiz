@@ -2,8 +2,6 @@
 
 import { FormEvent, useState } from "react";
 import Link from "next/link";
-import { getAuth, createUserWithEmailAndPassword } from "firebase/auth";
-import { app } from "../../firebase";
 import { useRouter } from "next/navigation";
 
 export default function Register() {
@@ -21,13 +19,7 @@ export default function Register() {
       setError("Passwords don't match");
       return;
     }
-
-    try {
-      await createUserWithEmailAndPassword(getAuth(app), email, password);
-      router.push("/login");
-    } catch (e) {
-      setError((e as Error).message);
-    }
+    // TODO
   }
 
   return (
