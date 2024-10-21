@@ -1,6 +1,6 @@
 {
   "name": "Next.js Dev Container",
-  "service": "nextjs",
+  "service": "app",
   "workspaceFolder": "/usr/src/app",
   "dockerComposeFile": "../docker-compose.yml",
   "forwardPorts": [3000, 5432, 5555],
@@ -11,11 +11,11 @@
       },
       "extensions": [
         "esbenp.prettier-vscode",
-        "dbaeumer.vscode-eslint"
+        "dbaeumer.vscode-eslint",
+        "prisma.prisma",
+        "ms-azuretools.vscode-docker"
       ]
     }
   },
-  "postCreateCommand": "npm install && npx prisma migrate dev --name init",
-  "postStartCommand": "npm run dev",
   "remoteUser": "node"
 }
