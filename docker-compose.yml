@@ -1,17 +1,17 @@
 services:
   app:
     build: .
-    volumes:
-      - .:/usr/src/app
+    #volumes:
+    #  - .:/usr/src/app
     ports:
       - "3000:3000"
     depends_on:
-      - postgres
+      - db
     environment:
       DATABASE_URL: postgres://myuser:mypassword@postgres:5432/mydb
       NODE_ENV: development
 
-  postgres:
+  db:
     image: postgres:13
     environment:
       POSTGRES_USER: myuser
