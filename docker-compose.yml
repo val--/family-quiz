@@ -1,26 +1,31 @@
 services:
   app:
-    build: .
-    volumes:
-      - .:/usr/src/app
+    build:
+      context: .
+      dockerfile: Dockerfile
     ports:
       - "3000:3000"
-    depends_on:
-      - postgres
+      - "5555:5555"
     environment:
-      DATABASE_URL: postgres://myuser:mypassword@postgres:5432/mydb
-      NODE_ENV: development
-
-  postgres:
-    image: postgres:13
-    environment:
-      POSTGRES_USER: myuser
-      POSTGRES_PASSWORD: mypassword
-      POSTGRES_DB: mydb
+      - DATABASE_URL=postgresql://myuser:mypassword@db:5432/mydatabase
     volumes:
-      - postgres-data:/var/lib/postgresql/data
+      - .:/app
+      - /app/node_modules
+    depends_on:
+      - db
+
+  db:
+    build:
+      context: .
+      dockerfile: Dockerfile.db
+    environment:
+      - POSTGRES_USER=myuser
+      - POSTGRES_PASSWORD=mypassword
+      - POSTGRES_DB=mydatabase
     ports:
-      - "5433:5432"
+      - "5432:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
 
 volumes:
-  postgres-data:
+  postgres_data:

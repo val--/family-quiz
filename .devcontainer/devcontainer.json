@@ -1,9 +1,14 @@
 {
-  "name": "Next.js Dev Container",
+  "name": "Family Quiz",
   "service": "app",
-  "workspaceFolder": "/usr/src/app",
+  "workspaceFolder": "/app",
   "dockerComposeFile": "../docker-compose.yml",
   "forwardPorts": [3000, 5432, 5555],
+  "portsAttributes": {
+    "3000": { "label": "App (NextJS)" },
+    "5432": { "label": "Database" },
+    "5555": { "label": "Prisma Studio" }
+  },
   "customizations": {
     "vscode": {
       "settings": { 
@@ -17,5 +22,5 @@
       ]
     }
   },
-  "remoteUser": "node"
+  //"remoteUser": "node"
 }

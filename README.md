@@ -4,6 +4,12 @@
 
 You can open this project with Visual Studio Code & hit "re-open with Dev Container". 
 
+Memo:
+docker compose up --build -d
+docker-compose exec app npm run prisma:generate
+docker-compose exec app npm run prisma:migrate
+docker-compose exec app npm run prisma:studio
+
 ---
 
 TODO:
