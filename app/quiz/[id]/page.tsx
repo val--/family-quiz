@@ -1,34 +1,35 @@
-"use client";
+import { PrismaClient, Quiz as QuizModel, Question as QuestionModel, Answer as AnswerModel } from "@prisma/client";
+import Quiz from "../../components/quiz/quiz";
 
-import { useParams } from 'next/navigation';
-import { useEffect, useState } from 'react';
-import dynamic from 'next/dynamic';
+const prisma = new PrismaClient();
 
-const Quiz = dynamic(() => import('../../components/quiz/quiz'));
+async function getQuizData(id: string) {
+  const quiz = await prisma.quiz.findUnique({
+    where: { id: parseInt(id) },
+    include: {
+      questions: {
+        include: {
+          answers: true,
+        },
+      },
+    },
+  });
+  return quiz;
+}
 
-export default function QuizPage() {
-  const { id } = useParams();
-  const [quizData, setQuizData] = useState<any>(null);
-  const [error, setError] = useState<boolean>(false);
-
-  useEffect(() => {
-    if (id) {
-      import(`../../sample${id}.json`).then((jsonData) => {
-        setQuizData(jsonData.default);
-      }).catch((error) => {
-        console.log(error);
-        setError(true);
-      });
-    }
-  }, [id]);
-
-  if (error) {
-    throw new Error("Failed to load quiz data");
-  }
+export default async function QuizPage({ params }: { params: { id: string } }) {
+  const { id } = params;
+  const quizData = await getQuizData(id);
 
   if (!quizData) {
-    return null; // Return loading state here if needed?
+    throw new Error("Quiz not found");
   }
 
-  return <Quiz title={quizData.theme} questions={quizData.quiz} />
+  return (
+    <Quiz
+      title={quizData.theme}
+      logo={quizData.logo}
+      questions={quizData.questions}
+    />
+  );
 }

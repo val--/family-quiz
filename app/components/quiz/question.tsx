@@ -12,12 +12,9 @@ const Question: React.FC<QuestionProps> = ({ question, handleAnswer }) => {
     isCorrect: boolean | null;
   }>({ selectedOption: null, isCorrect: null });
 
-  const handleOptionClick = (option: string) => {
-    const correct = option === question.answer;
-    setAnswerState({ selectedOption: option, isCorrect: correct });
-
-    handleAnswer(correct);
-
+  const handleOptionClick = (selectedAnswer: string, isCorrect: boolean) => {
+    setAnswerState({ selectedOption: selectedAnswer, isCorrect });
+    handleAnswer(isCorrect);
     setTimeout(() => {
       setAnswerState({ selectedOption: null, isCorrect: null });
     }, 5000);
@@ -36,14 +33,14 @@ const Question: React.FC<QuestionProps> = ({ question, handleAnswer }) => {
           <span>
             {answerState.isCorrect
               ? `${selectedEmoji} Bravo !`
-              : `${selectedEmoji} Raté ! La bonne réponse était "${question.answer}".`}
+              : `${selectedEmoji} Raté ! La bonne réponse était "${question.answers.find(a => a.isCorrect)?.answer}".`}
           </span>
         ) : (
           question.question
         )}
       </h3>
 
-      <p className={`text-sm text-gray-600 mb-4 ${answerState.selectedOption ? "line-clamp-2" : ""}`}style={{ height: '2.5rem' }}>
+      <p className={`text-sm text-gray-600 mb-4 ${answerState.selectedOption ? "line-clamp-2" : ""}`} style={{ height: '2.5rem' }}>
         {answerState.selectedOption ? question.anecdote : <span>&nbsp;</span>}
       </p>
 
@@ -52,17 +49,17 @@ const Question: React.FC<QuestionProps> = ({ question, handleAnswer }) => {
           <button
             key={index}
             className={`w-full p-3 rounded-lg text-white font-medium text-center transition-all duration-300 relative overflow-hidden ${
-              option === answerState.selectedOption
+              option.answer === answerState.selectedOption
                 ? answerState.isCorrect
                   ? 'bg-green-500'
                   : 'bg-red-500 animate-shake'
                 : 'bg-purple-600 hover:bg-purple-700'
             }`}
-            onClick={() => handleOptionClick(option)}
+            onClick={() => handleOptionClick(option.answer, option.isCorrect)}
             disabled={!!answerState.selectedOption}
           >
-            {option}
-            {option === answerState.selectedOption && (
+            {option.answer}
+            {option.answer === answerState.selectedOption && (
               <div className="absolute inset-0">
                 <div className="progress-bar absolute bottom-0 left-0 h-1 bg-white animate-progress"></div>
               </div>
