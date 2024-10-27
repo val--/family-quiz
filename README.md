@@ -4,11 +4,14 @@
 
 You can open this project with Visual Studio Code & hit "re-open with Dev Container". 
 
-Memo:
-docker compose up --build -d
-docker-compose exec app npm run prisma:generate
-docker-compose exec app npm run prisma:migrate
-docker-compose exec app npm run prisma:studio
+The application will be available through `localhost:3000`.
+
+## Database (psql)
+
+When you're in the IDE & inside the container:
+- `npm run prisma:migrate`
+- `npm run prisma:seed`
+- `npm run prisma:studio` (to inspect the db on `localhost:5555`)
 
 ---
 
