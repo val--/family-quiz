@@ -12,6 +12,631 @@ async function main() {
     },
   });
 
+  const quiz4 = await prisma.quiz.create({
+    data: {
+      logo: "les-mamans.png",
+      theme: "Les mamans",
+      authorId: adminUser.id,
+      questions: {
+        create: [
+          {
+            question: "Dans une célèbre comptine française, qui a « perdu son chat » ?",
+            anecdote: "Les paroles changent parfois selon les différentes versions de la chanson, mais le thème reste toujours le même.",
+            answers: {
+              create: [
+                { answer: "La mère Michel", isCorrect: true },
+                { answer: "La mère Claire", isCorrect: false },
+                { answer: "La mère Sylvie", isCorrect: false },
+                { answer: "La mère Claude", isCorrect: false }
+              ]
+            }
+          },
+          {
+            question: "Dans 'Les Misérables' de Victor Hugo, qui est la fille de Fantine ?",
+            anecdote: "Les Thénardier vont utiliser les moyens les plus sordides pour soutirer toujours plus d'argent à Fantine.",
+            answers: {
+              create: [
+                { answer: "Cosette", isCorrect: true },
+                { answer: "Enjolras", isCorrect: false },
+                { answer: "Eponine", isCorrect: false },
+                { answer: "Azelma", isCorrect: false }
+              ]
+            }
+          },
+          {
+            question: "De qui Lily-Rose Depp, actrice et mannequin franco-américaine, est-elle la fille ?",
+            anecdote: "Lily-Rose Depp a commencé sa carrière d'actrice en 2014, avec une apparition dans le film 'Tusk'.",
+            answers: {
+              create: [
+                { answer: "Winona Ryder", isCorrect: false },
+                { answer: "Kate Moss", isCorrect: false },
+                { answer: "Vanessa Paradis", isCorrect: true },
+                { answer: "Amber Heard", isCorrect: false }
+              ]
+            }
+          },
+          {
+            question: "Lequel de ces personnages n'est pas un des enfants de Marge Simpson ?",
+            anecdote: "Marge est la force moralisatrice de sa famille et essaie souvent de maintenir l'ordre dans la maison des Simpson.",
+            answers: {
+              create: [
+                { answer: "Bart", isCorrect: false },
+                { answer: "Abe", isCorrect: true },
+                { answer: "Maggie", isCorrect: false },
+                { answer: "Lisa", isCorrect: false }
+              ]
+            }
+          },
+          {
+            question: "En 2015, quelle artiste a sorti dans son album 'Chambre 12' un single titré 'Maman' ?",
+            anecdote: "Le 19 mai 2016, la maison de disque annonce que l'album a dépassé le million de ventes.",
+            answers: {
+              create: [
+                { answer: "Louane", isCorrect: true },
+                { answer: "Mylène Farmer", isCorrect: false },
+                { answer: "Lio", isCorrect: false },
+                { answer: "Jenifer", isCorrect: false }
+              ]
+            }
+          },
+          {
+            question: "Comment se prénomme la mère de la Famille Addams dans la série télé américaine ?",
+            anecdote: "Cette série est directement inspirée des personnages que dessinait Charles Addams à la fin des années trente.",
+            answers: {
+              create: [
+                { answer: "Aurora", isCorrect: false },
+                { answer: "Eva", isCorrect: false },
+                { answer: "Pétunia", isCorrect: false },
+                { answer: "Morticia", isCorrect: true }
+              ]
+            }
+          },
+          {
+            question: "De quel héros de fiction Lily, tuée par Lord Voldemort, est-elle la mère ?",
+            anecdote: "Lily Evans est née de parents moldus le 30 janvier 1960 et a une sœur, Pétunia Dursley.",
+            answers: {
+              create: [
+                { answer: "Luke Skywalker", isCorrect: false },
+                { answer: "Frodon Sacquet", isCorrect: false },
+                { answer: "Harry Potter", isCorrect: true },
+                { answer: "Mowgli", isCorrect: false }
+              ]
+            }
+          },
+          {
+            question: "Comment appelle-t-on une femme qui enfante pour une autre personne ou un couple ?",
+            anecdote: "La gestation pour autrui (GPA) est une méthode de procréation qui se pratique généralement en cas d'infertilité féminine.",
+            answers: {
+              create: [
+                { answer: "Enfanteresse", isCorrect: false },
+                { answer: "Mère-donneuse", isCorrect: false },
+                { answer: "Mère-porteuse", isCorrect: true },
+                { answer: "Fille-mère", isCorrect: false }
+              ]
+            }
+          },
+          {
+            question: "Quelle actrice est la mère d'Albert II mais aussi de Caroline et Stéphanie de Monaco ?",
+            anecdote: "Grace Kelly est morte en 1982, des suites d'un accident de voiture, sur la route de la Turbie.",
+            answers: {
+              create: [
+                { answer: "Ingrid Bergman", isCorrect: false },
+                { answer: "Grace Kelly", isCorrect: true },
+                { answer: "Audrey Hepburn", isCorrect: false },
+                { answer: "Bette Davis", isCorrect: false }
+              ]
+            }
+          },
+          {
+            question: "Lequel de ces pays met les mamans à l'honneur durant le mois de mai ?",
+            anecdote: "La date est fixée au dernier dimanche de mai, sauf si elle coïncide avec celle de la Pentecôte.",
+            answers: {
+              create: [
+                { answer: "Luxembourg", isCorrect: false },
+                { answer: "France", isCorrect: true },
+                { answer: "Russie", isCorrect: false },
+                { answer: "Argentine", isCorrect: false }
+              ]
+            }
+          },
+          {
+            question: "Quelle actrice joue la mère de Lola dans la comédie française à succès 'LOL' ?",
+            anecdote: "Pour l'anecdote, on entend la musique de 'La Boum' lorsque Charlotte fait ses courses au supermarché.",
+            answers: {
+              create: [
+                { answer: "Sophie Marceau", isCorrect: true },
+                { answer: "Monica Belucci", isCorrect: false },
+                { answer: "Vanessa Paradis", isCorrect: false },
+                { answer: "Valeria Golino", isCorrect: false }
+              ]
+            }
+          },
+          {
+            question: "Qui a chanté : « Dans les yeux de ma mère, il y a toujours une lumière » ?",
+            anecdote: "Arno est souvent surnommé « le Higelin belge » ou encore « le Tom Waits belge ».",
+            answers: {
+              create: [
+                { answer: "Arno", isCorrect: true },
+                { answer: "Benjamin Biolay", isCorrect: false },
+                { answer: "Alain Chamfort", isCorrect: false },
+                { answer: "Christophe", isCorrect: false }
+              ]
+            }
+          },
+          {
+            question: "Dans 'Kill Bill', quel personnage joué par Uma Thurman devient mère durant son coma ?",
+            anecdote: "Le premier volume de la saga est un hommage avoué au chanbara, les films de sabre japonais.",
+            answers: {
+              create: [
+                { answer: "Daisy Domergue", isCorrect: false },
+                { answer: "Jackie Brown", isCorrect: false },
+                { answer: "Shosanna Dreyfus", isCorrect: false },
+                { answer: "Beatrix Kiddo", isCorrect: true }
+              ]
+            }
+          },
+          {
+            question: "Quelle actrice, ex petite amie de Brad Pitt, est la fille de l'actrice Blythe Danner ?",
+            anecdote: "Blythe Danner est la veuve du producteur Bruce Paltrow, qui s'est éteint à la suite d'une maladie en 2002.",
+            answers: {
+              create: [
+                { answer: "Keira Knightley", isCorrect: false },
+                { answer: "Julianne Moore", isCorrect: false },
+                { answer: "Cate Blanchett", isCorrect: false },
+                { answer: "Gwyneth Paltrow", isCorrect: true }
+              ]
+            }
+          },
+          {
+            question: "Quel film de Jane Campion présente une mère muette qui joue de la musique ?",
+            anecdote: "Le film a remporté la Palme d'or du Festival de Cannes 1993, la première attribuée à une réalisatrice.",
+            answers: {
+              create: [
+                { answer: "Sweetie", isCorrect: false },
+                { answer: "La leçon de piano", isCorrect: true },
+                { answer: "In the cut", isCorrect: false },
+                { answer: "Bright Star", isCorrect: false }
+              ]
+            }
+          },
+          {
+            question: "Quel terme spécifique désigne le fait de tuer sa mère, acte très sévèrement jugé ?",
+            anecdote: "À Rome, le meurtre de parents proches, ascendants, frères, sœurs, ou patron était le pire des crimes.",
+            answers: {
+              create: [
+                { answer: "Cannibalisme", isCorrect: false },
+                { answer: "Matricide", isCorrect: true },
+                { answer: "Parricide", isCorrect: false },
+                { answer: "Inceste", isCorrect: false }
+              ]
+            }
+          },
+          {
+            question: "Dans la Rome Antique, durant quel mois célébrait-on un fête en l'honneur des mères ?",
+            anecdote: "Les Matronalia célébraient la naissance de Rome, le Printemps, les enfants et les mères.",
+            answers: {
+              create: [
+                { answer: "Juillet", isCorrect: false },
+                { answer: "Janvier", isCorrect: false },
+                { answer: "Novembre", isCorrect: false },
+                { answer: "Mars", isCorrect: true }
+              ]
+            }
+          },
+          {
+            question: "En latin et en grec, que signifie le mot « mamma », dont le mot « maman » est dérivé ?",
+            anecdote: "Pour les organismes non sexués, « mère » est parfois utilisé pour dire « parent ».",
+            answers: {
+              create: [
+                { answer: "Lait", isCorrect: false },
+                { answer: "Sein", isCorrect: true },
+                { answer: "Vie", isCorrect: false },
+                { answer: "Naissance", isCorrect: false }
+              ]
+            }
+          },
+          {
+            question: "Quelle actrice incarne une mère qui tente de retrouver son fils kidnappé dans 'L'échange' ?",
+            anecdote: "Après plus de trente réalisations, il s'agit seulement de la septième dans laquelle Clint Eastwood n'apparaît pas.",
+            answers: {
+              create: [
+                { answer: "Gwyneth Paltrow", isCorrect: false },
+                { answer: "Angélina Jolie", isCorrect: true },
+                { answer: "Nicole Kidman", isCorrect: false },
+                { answer: "Julia Roberts", isCorrect: false }
+              ]
+            }
+          },
+          {
+            question: "Dans quel roman de Jules Renard le héros doit-il faire face à la haine que lui voue sa mère ?",
+            anecdote: "François Lepic est surnommé « Poil de carotte » à cause de ses cheveux roux et ses taches de rousseur.",
+            answers: {
+              create: [
+                { answer: "Poil de Carotte", isCorrect: true },
+                { answer: "La Maîtresse", isCorrect: false },
+                { answer: "Bucoliques", isCorrect: false },
+                { answer: "L’Écornifleur", isCorrect: false }
+              ]
+            }
+          },
+          {
+            question: "À quel âge Mère Teresa, de son vrai nom Agnès Gonxha Bojaxhiu, est-elle décédée en 1997 ?",
+            anecdote: "Mère Teresa a été béatifiée le 19 octobre 2003, à Rome, par le pape Jean-Paul II.",
+            answers: {
+              create: [
+                { answer: "77 ans", isCorrect: false },
+                { answer: "87 ans", isCorrect: true },
+                { answer: "97 ans", isCorrect: false },
+                { answer: "107 ans", isCorrect: false }
+              ]
+            }
+          },
+          {
+            question: "Dans 'Breaking Bad', quel est le prénom de la mère de la famille White ?",
+            anecdote: "Skyler est très amoureuse de Walter, au point de prendre toutes les décisions importantes dans sa vie.",
+            answers: {
+              create: [
+                { answer: "Rhona", isCorrect: false },
+                { answer: "Angela", isCorrect: false },
+                { answer: "Skyler", isCorrect: true },
+                { answer: "Jayne", isCorrect: false }
+              ]
+            }
+          },
+          {
+            question: "Lequel de ces groupes de musique a dans son acronyme le mot « mère » ?",
+            anecdote: "Malgré sa popularité en France, le groupe NTM a été très critiqué pour la virulence de ses paroles.",
+            answers: {
+              create: [
+                { answer: "IAM", isCorrect: false },
+                { answer: "CMC", isCorrect: false },
+                { answer: "NTM", isCorrect: true },
+                { answer: "MIG", isCorrect: false }
+              ]
+            }
+          },
+          {
+            question: "Dans 'Game of Thrones', qui est la mère d'Arya, Bran, Rickon, Sansa et Robb Stark ?",
+            anecdote: "Catelyn était initialement promise au jeune Brandon Stark, héritier de Winterfell et frère d'Eddard.",
+            answers: {
+              create: [
+                { answer: "Mélissandre", isCorrect: false },
+                { answer: "Daenerys", isCorrect: false },
+                { answer: "Brienne", isCorrect: false },
+                { answer: "Catelyn", isCorrect: true }
+              ]
+            }
+          },
+          {
+            question: "Qui a peint le tableau 'La Madone à la prairie' représentant Jésus et sa mère, Marie ?",
+            anecdote: "Le tableau est l'une des œuvres qui ouvrent la série des Madones de l'artiste lors de son séjour florentin.",
+            answers: {
+              create: [
+                { answer: "Auguste Renoir", isCorrect: false },
+                { answer: "Michel-Ange", isCorrect: false },
+                { answer: "Rembrandt", isCorrect: false },
+                { answer: "Raphaël", isCorrect: true }
+              ]
+            }
+          },
+          {
+            question: "Dans la mythologie grecque, qui est la mère d'Héraclès, un des fils de Zeus ?",
+            anecdote: "Alcmène fut séduite en l'absence de son mari, par Zeus qui avait pris son apparence.",
+            answers: {
+              create: [
+                { answer: "Alcmène", isCorrect: true },
+                { answer: "Léto", isCorrect: false },
+                { answer: "Dioné", isCorrect: false },
+                { answer: "Déméter", isCorrect: false }
+              ]
+            }
+          },
+          {
+            question: "Quelle célèbre photographie en noir et blanc a été prise en 1936 par Dorothée Lange ?",
+            anecdote: "Cette célèbre photographie est devenue le symbole de la Grande Dépression aux États-Unis.",
+            answers: {
+              create: [
+                { answer: "Douleur de mère", isCorrect: false },
+                { answer: "Mère migrante", isCorrect: true },
+                { answer: "Mère maternelle", isCorrect: false },
+                { answer: "Mère et enfants", isCorrect: false }
+              ]
+            }
+          },
+          {
+            question: "Quelle ville russe accueille la statue de la Mère-Patrie qui fut l'enjeu de combats acharnés ?",
+            anecdote: "Avec son épée pointant vers le ciel, la statue défie tous ceux qui oseraient s'attaquer à ses enfants.",
+            answers: {
+              create: [
+                { answer: "Samara", isCorrect: false },
+                { answer: "Perm", isCorrect: false },
+                { answer: "Volgograd", isCorrect: true },
+                { answer: "Kazan", isCorrect: false }
+              ]
+            }
+          },
+          {
+            question: "En quelle année Marcel Pagnol a-t-il publié 'Le Château de ma mère' ?",
+            anecdote: "'Le Château de ma mère' est précédé par 'La Gloire de mon père' et suivi par 'Le Temps des secrets'.",
+            answers: {
+              create: [
+                { answer: "1977", isCorrect: false },
+                { answer: "1917", isCorrect: false },
+                { answer: "1937", isCorrect: false },
+                { answer: "1957", isCorrect: true }
+              ]
+            }
+          },
+          {
+            question: "Quel rappeur français au succès grandissant chante le tube 'maman j’ai mal' ?",
+            anecdote: "MHD est le précurseur de l'« afro trap », un mélange de musiques aux sonorités africaines et de trap.",
+            answers: {
+              create: [
+                { answer: "Kaaris", isCorrect: false },
+                { answer: "Nekfeu", isCorrect: false },
+                { answer: "Booba", isCorrect: false },
+                { answer: "MHD", isCorrect: true }
+              ]
+            }
+          }
+        ]
+      }
+    }
+  });
+
+  const quiz3 = await prisma.quiz.create({
+
+    data: {
+      logo: "1-orthoquizz.png",
+      theme: "Orthoquizz (Des mots difficiles à écrire)",
+      authorId: adminUser.id,
+      questions: {
+        create: [
+          {
+            question: "Où faut-il généralement d'abord se rendre en arrivant à l'hôpital ?",
+            anecdote: "Dans le monde du travail, l'accueil consiste à orienter un patient, un client ou un visiteur et à l'aider dans ses démarches.",
+            answers: {
+              create: [
+                { answer: "Acueil", isCorrect: false },
+                { answer: "Acceuil", isCorrect: false },
+                { answer: "Aceuil", isCorrect: false },
+                { answer: "Accueil", isCorrect: true }
+              ]
+            }
+          },
+          {
+            question: "Quel engin muni d'une planche et de deux roues est désormais électrique ?",
+            anecdote: "Servant de jouet d'enfant en 1930, la trottinette est devenue un moyen de transport individuel urbain depuis les années 2010.",
+            answers: {
+              create: [
+                { answer: "Trottinette", isCorrect: true },
+                { answer: "Trottinete", isCorrect: false },
+                { answer: "Trotinete", isCorrect: false },
+                { answer: "Trotinette", isCorrect: false }
+              ]
+            }
+          },
+          {
+            question: "À quoi procède un avion qui s'apprête à rejoindre la terre ferme ?",
+            anecdote: "Au début de l'aviation, le terme employé en place de l'atterrissage était la prise de terrain, terme toujours utilisé en parapente.",
+            answers: {
+              create: [
+                { answer: "Atterrisage", isCorrect: false },
+                { answer: "Atterissage", isCorrect: false },
+                { answer: "Atterrissage", isCorrect: true },
+                { answer: "Aterrissage", isCorrect: false }
+              ]
+            }
+          },
+          {
+            question: "Quelle idée ou concept semble parfois être le remède à tous les maux ?",
+            anecdote: "Le mot est parfois redoublé, on ne parle plus simplement de panacée, mais de panacée universelle, ce qui est un pléonasme.",
+            answers: {
+              create: [
+                { answer: "Panascée", isCorrect: false },
+                { answer: "Panacée", isCorrect: true },
+                { answer: "Pannacée", isCorrect: false },
+                { answer: "Panassée", isCorrect: false }
+              ]
+            }
+          },
+          {
+            question: "Quelle simple supposition peut être étudiée, confrontée, utilisée ou discutée ?",
+            anecdote: "Une hypothèse (sentimentale, religieuse ou politique) utilisée sans intention de la vérifier constitue dans ce cas un postulat.",
+            answers: {
+              create: [
+                { answer: "Hypotèse", isCorrect: false },
+                { answer: "Hipothèse", isCorrect: false },
+                { answer: "Hyppothèse", isCorrect: false },
+                { answer: "Hypothèse", isCorrect: true }
+              ]
+            }
+          },
+          {
+            question: "Quelle bande de faible hauteur est souvent placée au pied des murs ?",
+            anecdote: "Élément décoratif et utilitaire, elle permet entre autres de cacher des raccords ou des espaces laissés par les poseurs de parquet.",
+            answers: {
+              create: [
+                { answer: "Plynthe", isCorrect: false },
+                { answer: "Plinte", isCorrect: false },
+                { answer: "Plainte", isCorrect: false },
+                { answer: "Plinthe", isCorrect: true }
+              ]
+            }
+          },
+          {
+            question: "Quelle science a pour objet la recherche de l'origine des mots ?",
+            anecdote: "L'étymologie s'appuie sur des lois de la phonétique historique (ascendance de ces mots) et sur l'évolution sémantique des termes.",
+            answers: {
+              create: [
+                { answer: "Éthymologie", isCorrect: false },
+                { answer: "Hétymologie", isCorrect: false },
+                { answer: "Étymologie", isCorrect: true },
+                { answer: "Étimologie", isCorrect: false }
+              ]
+            }
+          },
+          {
+            question: "Que dit-on d'une femme qui engage une relation durable pour de l'argent ?",
+            anecdote: "Ce terme est souvent utilisé lorsqu'une belle et jeune femme se marie avec un homme riche et beaucoup plus âgé qu'elle.",
+            answers: {
+              create: [
+                { answer: "Vénnale", isCorrect: false },
+                { answer: "Vénale", isCorrect: true },
+                { answer: "Vainale", isCorrect: false },
+                { answer: "Veinale", isCorrect: false }
+              ]
+            }
+          },
+          {
+            question: "Quelle croyance semble être manifestement erronée au premier abord ?",
+            anecdote: "Cette tradition orale propose une explication pour certains aspects fondamentaux du monde, qui a forgé ou qui véhicule ces mythes.",
+            answers: {
+              create: [
+                { answer: "Mithe", isCorrect: false },
+                { answer: "Myte", isCorrect: false },
+                { answer: "Mythe", isCorrect: true },
+                { answer: "Mytthe", isCorrect: false }
+              ]
+            }
+          },
+          {
+            question: "Quelle cavité verticale, souvent profonde, peut être naturelle ou artificielle ?",
+            anecdote: "Un puits est, à l'origine, une cavité physique verticale, connectant deux niveaux de profondeurs différentes, pénétrables ou non.",
+            answers: {
+              create: [
+                { answer: "Puit", isCorrect: false },
+                { answer: "Puis", isCorrect: false },
+                { answer: "Puits", isCorrect: true },
+                { answer: "Puy", isCorrect: false }
+              ]
+            }
+          },
+          {
+            question: "Quelle plante annuelle ou vivace est symbole de longévité en Chine ?",
+            anecdote: "Les plus connus des chrysanthèmes sont les chrysanthèmes d'automne, ou chrysanthèmes des fleuristes (pomponnettes).",
+            answers: {
+              create: [
+                { answer: "Crysanthème", isCorrect: false },
+                { answer: "Chrysantème", isCorrect: false },
+                { answer: "Chrysanthème", isCorrect: true },
+                { answer: "Crisanthème", isCorrect: false }
+              ]
+            }
+          },
+          {
+            question: "Quel mammifère amphibien adulte n'a pas d'autre prédateur que l'homme ?",
+            anecdote: "Pour séduire une femelle les hippopotames peuvent se battre jusqu'à la mort, se combattant à l'aide de leurs défenses.",
+            answers: {
+              create: [
+                { answer: "Hipopotame", isCorrect: false },
+                { answer: "Hippopotame", isCorrect: true },
+                { answer: "Hipoppotame", isCorrect: false },
+                { answer: "Hypopotame", isCorrect: false }
+              ]
+            }
+          },
+          {
+            question: "Quelle plante Sim n'aimait-il pas dans une chanson de 1971 ?",
+            anecdote: "On les rencontre dans les régions montagneuses, telles que les Alpes, les Pyrénées, le Caucase, les Carpates et l'Himalaya.",
+            answers: {
+              create: [
+                { answer: "Rododindron", isCorrect: false },
+                { answer: "Rhododindron", isCorrect: false },
+                { answer: "Rhododendron", isCorrect: true },
+                { answer: "Rododundron", isCorrect: false }
+              ]
+            }
+          },
+          {
+            question: "Quelle infection à la couleur dorée est potentiellement mortelle ?",
+            anecdote: "Si un patient n'est pas traité suffisamment tôt, et notamment s'il est immunodéprimé, il peut développer une septicémie.",
+            answers: {
+              create: [
+                { answer: "Stafylocoque", isCorrect: false },
+                { answer: "Staphilocoque", isCorrect: false },
+                { answer: "Stafilocoque", isCorrect: false },
+                { answer: "Staphylocoque", isCorrect: true }
+              ]
+            }
+          },
+          {
+            question: "Quelle mer, presque entièrement fermée, entoure une grande partie de l'Italie ?",
+            anecdote: "L'ouverture de la mer Méditerranée vers l'océan Atlantique par le détroit de Gibraltar est large d'environ quatorze kilomètres.",
+            answers: {
+              create: [
+                { answer: "Méditerranée", isCorrect: true },
+                { answer: "Médittérrannée", isCorrect: false },
+                { answer: "Méditteranée", isCorrect: false },
+                { answer: "Métiterrannée", isCorrect: false }
+              ]
+            }
+          },
+          {
+            question: "Quel animal semi-aquatique est endémique de l'est de l'Australie ?",
+            anecdote: "L'ornithorynque est l'une des cinq espèces de l'ordre des monotrèmes, seul ordre de mammifères qui pond des oeufs.",
+            answers: {
+              create: [
+                { answer: "Ornitorynque", isCorrect: false },
+                { answer: "Ornitorinque", isCorrect: false },
+                { answer: "Ornithorynque", isCorrect: true },
+                { answer: "Ornythorinque", isCorrect: false }
+              ]
+            }
+          },
+          {
+            question: "Quel thérapeute irez-vous consulter pour retrouver l'usage d'une main ?",
+            anecdote: "Le kinésithérapeute cherchera à augmenter les capacités fonctionnelles de la personne dans le cadre de la rééducation.",
+            answers: {
+              create: [
+                { answer: "Kinésitérapeute", isCorrect: false },
+                { answer: "Kynésithérapeute", isCorrect: false },
+                { answer: "Kinésythérapeute", isCorrect: false },
+                { answer: "Kinésithérapeute", isCorrect: true }
+              ]
+            }
+          },
+          {
+            question: "Quelle situation offrant une alternative mène à des résultats différents ?",
+            anecdote: "Généralement, les possibilités offertes sont présentées aussi attirantes ou repoussantes l'une que l'autre, mais sans intérêt.",
+            answers: {
+              create: [
+                { answer: "Dilemme", isCorrect: true },
+                { answer: "Dilème", isCorrect: false },
+                { answer: "Dylème", isCorrect: false },
+                { answer: "Dilemne", isCorrect: false }
+              ]
+            }
+          },
+          {
+            question: "Quel moyen permet d'augmenter la mémorisation de l'information ?",
+            anecdote: "La première référence connue à un mnémonique est l'Art de mémoire, décrite dans « De Oratore » par Cicéron.",
+            answers: {
+              create: [
+                { answer: "Mnémotechnique", isCorrect: true },
+                { answer: "Maimotechnique", isCorrect: false },
+                { answer: "Mémotechnique", isCorrect: false },
+                { answer: "Mnaimotechnique", isCorrect: false }
+              ]
+            }
+          },
+          {
+            question: "Sur quelle structure rigide les éléments d'un véhicule terrestre sont-ils fixés ?",
+            anecdote: "Par opposition à la carrosserie, on peut parler de châssis pour désigner l'ensemble des structures participant à la fonction de roulage.",
+            answers: {
+              create: [
+                { answer: "Châssis", isCorrect: true },
+                { answer: "Chassi", isCorrect: false },
+                { answer: "Chassis", isCorrect: false },
+                { answer: "Châssit", isCorrect: false }
+              ]
+            }
+          },
+        ]
+      }
+    }
+  })
+
   const quiz1 = await prisma.quiz.create({
     data: {
       logo: "6-histoire-fr.png",

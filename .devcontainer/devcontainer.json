@@ -22,5 +22,5 @@
       ]
     }
   },
-  //"remoteUser": "node"
+  "remoteUser": "node"
 }
