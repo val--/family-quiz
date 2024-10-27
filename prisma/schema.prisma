@@ -17,7 +17,7 @@ model User {
 
 model Quiz {
   id         Int       @id @default(autoincrement())
-  provider   String
+  logo       String
   authorId   Int       @default(1) // Set default author as admin
   author     User      @relation("Author", fields: [authorId], references: [id])
   theme      String

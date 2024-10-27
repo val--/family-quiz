@@ -14,10 +14,9 @@ async function main() {
 
   const quiz1 = await prisma.quiz.create({
     data: {
-      provider: "Family Quiz",
-      author: "Jean Bon",
       logo: "6-histoire-fr.png",
       theme: "Histoire de France",
+      authorId: adminUser.id,
       questions: {
         create: [
           {
@@ -267,10 +266,9 @@ async function main() {
 
   const quiz2 = await prisma.quiz.create({
     data: {
-      provider: "Family Quiz",
-      author: "Valentin-Guillaume",
       logo: "4-cats.png",
       theme: "Les chats",
+      authorId: adminUser.id,
       questions: {
         create: [
           {
