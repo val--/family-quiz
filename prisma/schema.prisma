@@ -8,7 +8,30 @@ generator client {
 }
  
 model Quiz {
-  id      String   @id @default(cuid())
-  name    String
-  photo   String
+  id        Int       @id @default(autoincrement())
+  provider  String
+  author    String
+  theme     String
+  questions Question[]
+}
+
+model Question {
+  id        Int      @id @default(autoincrement())
+  quizId    Int
+  question  String
+  anecdote  String?
+  answers   Answer[]
+  quiz      Quiz     @relation(fields: [quizId], references: [id])
+
+  @@index([quizId])
+}
+
+model Answer {
+  id         Int      @id @default(autoincrement())
+  questionId Int
+  answer     String
+  isCorrect  Boolean
+  question   Question @relation(fields: [questionId], references: [id])
+
+  @@index([questionId])
 }
