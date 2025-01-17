@@ -1,19 +1,14 @@
 FROM node:20
 
-# USER node
-USER root
+USER node
 
 WORKDIR /app
 
-COPY package.json package-lock.json ./
+COPY --chown=node:node package.json package-lock.json ./
 
 RUN npm install
 
-RUN chown -R node:node /app/node_modules
-
 COPY --chown=node:node . .
-
-USER node
 
 RUN npx prisma generate
 

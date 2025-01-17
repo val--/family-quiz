@@ -4,11 +4,6 @@
   "workspaceFolder": "/app",
   "dockerComposeFile": "../docker-compose.yml",
   "forwardPorts": [3000, 5432, 5555],
-  "containerEnv": {
-    "POSTGRES_USER": "admin",
-    "POSTGRES_PASSWORD": "admin",
-    "POSTGRES_DATABASE": "family_quiz"
-  },
   "portsAttributes": {
     "3000": { "label": "App (NextJS)" },
     "5432": { "label": "Database" },
@@ -27,5 +22,11 @@
       ]
     }
   },
-  "remoteUser": "node"
+  "postCreateCommand": "npm install && npx prisma generate",
+  "initializeCommand": "echo 'Setting up Family Quiz environment...'",
+  "workspaceMount": "source=${localWorkspaceFolder},target=/app,type=bind",
+  "remoteEnv": {
+    "NODE_ENV": "development",
+    "DATABASE_URL": "postgresql://postgres:password@db:5432/admin"
+  }
 }
