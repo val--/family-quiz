@@ -14,7 +14,7 @@ async function main() {
 
   const quiz4 = await prisma.quiz.create({
     data: {
-      logo: "les-mamans.png",
+      logo: "2-les-mamans.png",
       theme: "Les mamans",
       authorId: adminUser.id,
       questions: {
@@ -387,8 +387,8 @@ async function main() {
   const quiz3 = await prisma.quiz.create({
 
     data: {
-      logo: "1-orthoquizz.png",
-      theme: "Orthoquizz (Des mots difficiles à écrire)",
+      logo: "1-orthoquiz.png",
+      theme: "Orthoquiz",
       authorId: adminUser.id,
       questions: {
         create: [
