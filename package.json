@@ -15,7 +15,7 @@
         "prisma:migrate": "npx prisma migrate dev --name init",
         "prisma:studio": "npx prisma studio",
         "prisma:seed": "npx prisma db seed",
-        "prisma:reset": "npx prisma migrate reset"    
+        "prisma:reset": "npx prisma migrate reset"
     },
     "dependencies": {
         "@auth/prisma-adapter": "^2.7.0",
