@@ -1,5 +1,5 @@
+
 import Link from "next/link";
-import { SampleQuiz as Quiz } from './types/custom-types';
 import { PrismaClient } from "@prisma/client";
 
 const prisma = new PrismaClient();

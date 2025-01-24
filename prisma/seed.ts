@@ -8,7 +8,8 @@ async function main() {
     update: {},
     create: {
       email: "admin@example.com",
-      username: "admin",
+      name: "admin",
+      password: "745f9e04-fbba-4116-b87a-0781b18d3051"
     },
   });
 

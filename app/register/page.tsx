@@ -19,7 +19,19 @@ export default function Register() {
       setError("Passwords don't match");
       return;
     }
-    // TODO
+    
+    const response = await fetch("/api/auth/register", {
+      method: "POST",
+      body: JSON.stringify({ email, password, name }),
+      headers: { "Content-Type": "application/json" },
+    });
+
+    if (response.ok) {
+      router.push("/login");
+    } else {
+      setError("Failed to register. Please try again.");
+    }
+    
   }
 
   return (

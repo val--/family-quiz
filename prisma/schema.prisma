@@ -10,9 +10,10 @@ generator client {
 }
 
 model User {
-  id       Int       @id @default(autoincrement())
-  email    String    @unique
-  username String
+  id       String  @id @default(uuid())
+  email    String  @unique
+  password String  @default(uuid())
+  name String
   quizzes  Quiz[]    @relation("Author")
   sessions Session[]
   createdAt     DateTime  @default(now()) @map(name: "created_at")
@@ -23,8 +24,8 @@ model User {
 model Quiz {
   id         Int       @id @default(autoincrement())
   logo       String
-  authorId   Int       @default(1) // Set default author as admin
-  author     User      @relation("Author", fields: [authorId], references: [id])
+  authorId   String  @default("1")  // default = admin
+  author     User    @relation("Author", fields: [authorId], references: [id])
   theme      String
   questions  Question[]
   sessions   Session[]
@@ -53,7 +54,7 @@ model Answer {
 
 model Session {
   id            Int        @id @default(autoincrement())
-  userId        Int
+  userId        String
   quizId        Int
   startTime     DateTime   @default(now())
   endTime       DateTime?

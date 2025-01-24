@@ -1,5 +1,9 @@
 {
   "compilerOptions": {
+    "baseUrl": ".", 
+    "paths": {
+      "@/*": ["./app/*"]
+    },
     "target": "es2017",
     "module": "esnext",
     "lib": [

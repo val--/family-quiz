@@ -1,5 +1,6 @@
 "use client";
 
+import { signIn } from "next-auth/react";
 import { FormEvent, useState } from "react";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
@@ -12,14 +13,11 @@ export default function Login() {
 
   async function handleSubmit(event: FormEvent) {
     event.preventDefault();
-    setError("");
-
-    try {
-      // TODO
-    } catch (e) {
-      console.log(e)
-      setError((e as Error).message);
-    }
+    await signIn("credentials", {
+      email,
+      password,
+      callbackUrl: "/profile",
+    });
   }
 
   return (

@@ -1,11 +1,14 @@
-import { PrismaClient, Quiz as QuizModel, Question as QuestionModel, Answer as AnswerModel } from "@prisma/client";
+import { prisma } from "@/lib/prisma";
 import Quiz from "../../components/quiz/quiz";
+import { Metadata } from "next";
 
-const prisma = new PrismaClient();
+export const metadata: Metadata = {
+  title: "Quiz",
+};
 
-async function getQuizData(id: string) {
-  const quiz = await prisma.quiz.findUnique({
-    where: { id: parseInt(id) },
+async function getQuizData(id: number) {
+  return await prisma.quiz.findUnique({
+    where: { id },
     include: {
       questions: {
         include: {
@@ -14,11 +17,21 @@ async function getQuizData(id: string) {
       },
     },
   });
-  return quiz;
 }
 
-export default async function QuizPage({ params }: { params: { id: string } }) {
-  const { id } = params;
+export default async function QuizPage({
+  params,
+}: {
+  params: Promise<{ id: string }>
+}) {
+
+  const id = parseInt((await params).id)
+
+
+  if (isNaN(id)) {
+    throw new Error("Invalid quiz ID");
+  }
+
   const quizData = await getQuizData(id);
 
   if (!quizData) {
