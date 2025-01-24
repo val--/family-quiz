@@ -23,7 +23,3 @@ TODO:
 - Manage quiz data (themes, difficulty...)
 - Amazing animations
 - ...
-
----
-
-Note: as a quiz sample, i used data from https://www.openquizzdb.org/
