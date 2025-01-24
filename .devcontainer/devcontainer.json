@@ -22,6 +22,6 @@
       ]
     }
   },
-  "postCreateCommand": "npx prisma migrate dev --name init && npx prisma db seed",
+  "postCreateCommand": "npx prisma migrate reset --force",
   "initializeCommand": "echo 'Setting up Family Quiz environment...'"
 }
