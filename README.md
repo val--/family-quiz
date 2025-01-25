@@ -21,4 +21,4 @@ TODO:
 - Persistence (sessions, scores...)
 - Manage quiz data (themes, difficulty...)
 - Amazing animations
-- ... a lot more
+- ...
