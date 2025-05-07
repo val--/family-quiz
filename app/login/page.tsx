@@ -13,11 +13,23 @@ export default function Login() {
 
   async function handleSubmit(event: FormEvent) {
     event.preventDefault();
-    await signIn("credentials", {
-      email,
-      password,
-      callbackUrl: "/profile",
-    });
+    setError("");
+
+    try {
+      const result = await signIn("credentials", {
+        email,
+        password,
+        redirect: false,
+      });
+
+      if (result?.error) {
+        setError(result.error);
+      } else {
+        router.push("/profile");
+      }
+    } catch (err) {
+      setError("Une erreur est survenue lors de la connexion");
+    }
   }
 
   return (
@@ -28,7 +40,10 @@ export default function Login() {
         </h2>
         <form onSubmit={handleSubmit} className="space-y-6">
           <div>
-            <label className="block text-gray-700 font-medium mb-2" htmlFor="email">
+            <label
+              className="block text-gray-700 font-medium mb-2"
+              htmlFor="email"
+            >
               Adresse Email
             </label>
             <input
@@ -43,7 +58,10 @@ export default function Login() {
           </div>
 
           <div>
-            <label className="block text-gray-700 font-medium mb-2" htmlFor="password">
+            <label
+              className="block text-gray-700 font-medium mb-2"
+              htmlFor="password"
+            >
               Mot de passe
             </label>
             <input
@@ -73,13 +91,19 @@ export default function Login() {
 
         <p className="text-center text-gray-700 mt-6">
           Vous n'avez pas encore de compte ?{" "}
-          <Link href="/register" className="text-purple-600 font-medium hover:underline">
+          <Link
+            href="/register"
+            className="text-purple-600 font-medium hover:underline"
+          >
             Inscrivez-vous
           </Link>
         </p>
 
         <div className="mt-8 text-center">
-          <Link href="/" className="text-gray-600 hover:text-purple-600 font-medium hover:underline">
+          <Link
+            href="/"
+            className="text-gray-600 hover:text-purple-600 font-medium hover:underline"
+          >
             Retour à la page d'accueil
           </Link>
         </div>

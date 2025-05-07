@@ -12,7 +12,7 @@ generator client {
 model User {
   id       String  @id @default(uuid())
   email    String  @unique
-  password String  @default(uuid())
+  password String
   name String
   quizzes  Quiz[]    @relation("Author")
   sessions Session[]

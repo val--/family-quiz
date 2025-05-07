@@ -1,18 +1,25 @@
 {
   "name": "Family Quiz",
+  "dockerComposeFile": ["../docker-compose.yml"],
   "service": "front",
   "workspaceFolder": "/application",
-  "dockerComposeFile": "../docker-compose.yml",
+
+  // Port forwarding
   "forwardPorts": [3000, 5432, 5555],
   "portsAttributes": {
-    "3000": { "label": "App (NextJS)" },
+    "3000": { "label": "App (NextJS)", "onAutoForward": "openBrowser" },
     "5432": { "label": "Database" },
-    "5555": { "label": "Prisma Studio" }
+    "5555": { "label": "Prisma Studio", "onAutoForward": "notify" }
   },
+
+  // VS Code customizations
   "customizations": {
     "vscode": {
-      "settings": { 
-        "terminal.integrated.defaultProfile.linux": "bash"
+      "settings": {
+        "terminal.integrated.defaultProfile.linux": "bash",
+        "editor.formatOnSave": true,
+        "editor.defaultFormatter": "esbenp.prettier-vscode",
+        "eslint.validate": ["javascript", "typescript", "typescriptreact"]
       },
       "extensions": [
         "esbenp.prettier-vscode",
@@ -22,6 +29,12 @@
       ]
     }
   },
-  "postCreateCommand": "npx prisma migrate reset --force",
-  "initializeCommand": "echo 'Setting up Family Quiz environment...'"
+
+  // Lifecycle commands
+  "initializeCommand": "echo '🚀 Initializing Family Quiz Dev Container...'",
+  "postCreateCommand": "npx prisma migrate reset --force && npx prisma generate",
+
+  // Container setup
+  "remoteUser": "node",
+  "shutdownAction": "stopCompose"
 }

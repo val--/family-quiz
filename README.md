@@ -9,7 +9,8 @@ You can open this project with Visual Studio Code & hit "re-open with Dev Contai
 ## Run the project locally using docker
 
 - `docker compose up -d`
-- `docker exec -it family-quiz-front-1 sh -c "npx prisma migrate dev --name init && npx prisma db seed"`
+- `docker exec -it family-quiz-front-1 sh -c "npx prisma migrate reset --force"`
+- To check the content of the database: `docker exec -it family-quiz-front-1 sh -c "npx prisma studio"`
 
 
 The application will be available through `localhost:3000`.

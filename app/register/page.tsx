@@ -8,6 +8,7 @@ export default function Register() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [confirmation, setConfirmation] = useState("");
+  const [name, setName] = useState("");
   const [error, setError] = useState("");
   const router = useRouter();
 
@@ -19,7 +20,7 @@ export default function Register() {
       setError("Passwords don't match");
       return;
     }
-    
+
     const response = await fetch("/api/auth/register", {
       method: "POST",
       body: JSON.stringify({ email, password, name }),
@@ -31,7 +32,6 @@ export default function Register() {
     } else {
       setError("Failed to register. Please try again.");
     }
-    
   }
 
   return (
@@ -42,7 +42,28 @@ export default function Register() {
         </h2>
         <form onSubmit={handleSubmit} className="space-y-6">
           <div>
-            <label className="block text-gray-700 font-medium mb-2" htmlFor="email">
+            <label
+              className="block text-gray-700 font-medium mb-2"
+              htmlFor="name"
+            >
+              Nom
+            </label>
+            <input
+              id="name"
+              type="text"
+              value={name}
+              onChange={(e) => setName(e.target.value)}
+              required
+              className="w-full p-3 border border-gray-300 rounded-lg focus:outline-none focus:border-purple-500"
+              placeholder="Entrez votre nom"
+            />
+          </div>
+
+          <div>
+            <label
+              className="block text-gray-700 font-medium mb-2"
+              htmlFor="email"
+            >
               Adresse Email
             </label>
             <input
@@ -57,7 +78,10 @@ export default function Register() {
           </div>
 
           <div>
-            <label className="block text-gray-700 font-medium mb-2" htmlFor="password">
+            <label
+              className="block text-gray-700 font-medium mb-2"
+              htmlFor="password"
+            >
               Mot de passe
             </label>
             <input
@@ -72,7 +96,10 @@ export default function Register() {
           </div>
 
           <div>
-            <label className="block text-gray-700 font-medium mb-2" htmlFor="confirm-password">
+            <label
+              className="block text-gray-700 font-medium mb-2"
+              htmlFor="confirm-password"
+            >
               Confirmer le mot de passe
             </label>
             <input
@@ -102,13 +129,19 @@ export default function Register() {
 
         <p className="text-center text-gray-700 mt-6">
           Vous avez déjà un compte ?{" "}
-          <Link href="/login" className="text-purple-600 font-medium hover:underline">
+          <Link
+            href="/login"
+            className="text-purple-600 font-medium hover:underline"
+          >
             Connectez-vous
           </Link>
         </p>
 
         <div className="mt-8 text-center">
-          <Link href="/" className="text-gray-600 hover:text-purple-600 font-medium hover:underline">
+          <Link
+            href="/"
+            className="text-gray-600 hover:text-purple-600 font-medium hover:underline"
+          >
             Retour à la page d'accueil
           </Link>
         </div>
