@@ -4,8 +4,11 @@ import Link from "next/link";
 import AuthButtons from "app/components/AuthButtons";
 import { getServerSession } from "next-auth";
 
-export default async function RootLayout({ children }: { children: React.ReactNode }) {
-
+export default async function RootLayout({
+  children,
+}: {
+  children: React.ReactNode;
+}) {
   const session = await getServerSession();
 
   return (
@@ -14,13 +17,16 @@ export default async function RootLayout({ children }: { children: React.ReactNo
         <SessionProviderWrapper session={session}>
           <header className="w-full py-2 bg-opacity-50 bg-black text-white text-center shadow-md">
             <div className="container mx-auto flex justify-between items-center px-4">
-              <Link href="/" className="text-white text-lg font-semibold hover:text-gray-300 transition">
+              <Link
+                href="/"
+                className="text-white text-lg font-semibold hover:text-gray-300 transition"
+              >
                 Family Quiz
               </Link>
               <AuthButtons />
             </div>
           </header>
-          <main className="flex-grow">{children}</main>
+          <main className="flex-1 flex flex-col">{children}</main>
         </SessionProviderWrapper>
       </body>
     </html>
