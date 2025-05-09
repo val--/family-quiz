@@ -15,15 +15,17 @@ export default async function RootLayout({
     <html lang="en">
       <body className="min-h-screen flex flex-col bg-gradient-to-r from-blue-400 via-purple-500 to-pink-500">
         <SessionProviderWrapper session={session}>
-          <header className="w-full py-2 bg-opacity-50 bg-black text-white text-center shadow-md">
-            <div className="container mx-auto flex justify-between items-center px-4">
+          <header className="w-full py-2 bg-black shadow-lg border-b border-black z-20">
+            <div className="container mx-auto flex justify-between items-center px-6 h-12">
               <Link
                 href="/"
-                className="text-white text-lg font-semibold hover:text-gray-300 transition"
+                className="text-2xl font-extrabold text-white tracking-wide drop-shadow"
               >
                 Family Quiz
               </Link>
-              <AuthButtons />
+              <div className="flex gap-2 items-center h-full">
+                <AuthButtons />
+              </div>
             </div>
           </header>
           <main className="flex-1 flex flex-col">{children}</main>

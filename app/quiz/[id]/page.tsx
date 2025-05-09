@@ -22,11 +22,9 @@ async function getQuizData(id: number) {
 export default async function QuizPage({
   params,
 }: {
-  params: Promise<{ id: string }>
+  params: Promise<{ id: string }>;
 }) {
-
-  const id = parseInt((await params).id)
-
+  const id = parseInt((await params).id);
 
   if (isNaN(id)) {
     throw new Error("Invalid quiz ID");
@@ -38,11 +36,14 @@ export default async function QuizPage({
     throw new Error("Quiz not found");
   }
 
+  // TEMP - Limit questions to 3 items
+  const limitedQuestions = quizData.questions.slice(0, 3);
+
   return (
     <Quiz
       title={quizData.theme}
       logo={quizData.logo}
-      questions={quizData.questions}
+      questions={limitedQuestions}
     />
   );
 }
