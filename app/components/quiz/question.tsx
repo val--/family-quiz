@@ -40,35 +40,47 @@ const Question: React.FC<QuestionProps> = ({ question, handleAnswer }) => {
       </div>
 
       <div className="grid grid-cols-1 gap-4">
-        {question.answers.map((answer) => (
-          <button
-            key={answer.id}
-            onClick={() => handleOptionClick(answer.answer, answer.isCorrect)}
-            disabled={answerState.selectedOption !== null}
-            className={`w-full p-4 rounded-xl text-left font-semibold transition-all duration-200 border-2 transform
-              ${
-                answerState.selectedOption === answer.answer
-                  ? answer.isCorrect
-                    ? "bg-green-500 text-white shadow-lg"
-                    : "bg-red-500 text-white shadow-lg"
-                  : "bg-gradient-to-r from-fuchsia-500 via-purple-500 to-blue-500 text-white hover:scale-105 transition-transform"
-              }
-            `}
-          >
-            {answer.answer}
-          </button>
-        ))}
+        {question.answers.map((answer) => {
+          const isSelected = answerState.selectedOption === answer.answer;
+          const isAnswered = answerState.selectedOption !== null;
+          let buttonColor = "bg-purple-500 text-white";
+          if (isAnswered && isSelected) {
+            buttonColor = answerState.isCorrect
+              ? "bg-green-500 text-white"
+              : "bg-red-500 text-white";
+          } else if (isAnswered) {
+            buttonColor = "bg-purple-500 text-white opacity-70";
+          }
+          return (
+            <div key={answer.id} className="relative">
+              <button
+                onClick={() =>
+                  handleOptionClick(answer.answer, answer.isCorrect)
+                }
+                disabled={isAnswered}
+                className={`w-full p-4 rounded-xl text-left font-semibold transition-all duration-200 border-2 ${buttonColor} ${
+                  !isAnswered ? "hover:bg-purple-600" : ""
+                } ${isAnswered ? "cursor-not-allowed" : ""}`}
+              >
+                {answer.answer}
+              </button>
+              {/* Loading bar under selected answer */}
+              {isSelected && isAnswered && (
+                <div className="absolute left-0 right-0 bottom-0 h-1 bg-transparent overflow-hidden rounded-b-xl">
+                  <div
+                    className="h-full bg-white animate-loading-bar"
+                    style={{ animationDuration: "5s" }}
+                  ></div>
+                </div>
+              )}
+            </div>
+          );
+        })}
       </div>
 
       <div className="text-center text-2xl animate-bounce min-h-[32px]">
         {answerState.selectedOption && (
-          <span
-            className={
-              answerState.isCorrect ? "text-green-500" : "text-red-500"
-            }
-          >
-            {selectedEmoji}
-          </span>
+          <span className="text-purple-700">{selectedEmoji}</span>
         )}
       </div>
     </div>
