@@ -13,8 +13,8 @@ services:
       - "3000:3000"
       - "5555:5555"
     environment:
-      - NEXT_PUBLIC_API_URL
-      - DATABASE_URL
+      NEXT_PUBLIC_API_URL: ${NEXT_PUBLIC_API_URL:-http://localhost:3000}
+      DATABASE_URL: ${DATABASE_URL:-postgresql://postgres:postgres@db:5432/family_quiz}
     restart: unless-stopped
     healthcheck:
       test: ["CMD", "curl", "-f", "http://localhost:3000"]
@@ -25,9 +25,9 @@ services:
   db:
     image: postgres:14
     environment:
-      - POSTGRES_USER
-      - POSTGRES_PASSWORD
-      - POSTGRES_DB
+      POSTGRES_USER: ${POSTGRES_USER:-postgres}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:-postgres}
+      POSTGRES_DB: ${POSTGRES_DB:-family_quiz}
     volumes:
       - postgres_data:/var/lib/postgresql/data
     ports:
