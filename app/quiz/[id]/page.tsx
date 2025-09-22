@@ -36,8 +36,8 @@ export default async function QuizPage({
     throw new Error("Quiz not found");
   }
 
-  // TEMP - Limit questions to 3 items
-  const limitedQuestions = quizData.questions.slice(0, 3);
+  // 20 questions max
+  const limitedQuestions = quizData.questions.slice(0, 20);
 
   return (
     <Quiz

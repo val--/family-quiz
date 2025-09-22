@@ -17,14 +17,14 @@ const Question: React.FC<QuestionProps> = ({ question, handleAnswer }) => {
     handleAnswer(isCorrect);
     setTimeout(() => {
       setAnswerState({ selectedOption: null, isCorrect: null });
-    }, 5000);
+    }, 4000);
   };
 
   const emojis = ["🎉", "👏", "💪", "✨", "😎", "😀"];
   const failureEmojis = ["😔", "😢", "💔", "🙁", "💩", "😤"];
   const selectedEmoji = answerState.isCorrect
-    ? emojis[Math.floor(Math.random() * emojis.length)]
-    : failureEmojis[Math.floor(Math.random() * failureEmojis.length)];
+    ? emojis[Math.floor(Math.random() * emojis.length)] + "Bonne réponse !"
+    : failureEmojis[Math.floor(Math.random() * failureEmojis.length)] + "Mauvaise réponse !";
 
   return (
     <div className="space-y-6">
